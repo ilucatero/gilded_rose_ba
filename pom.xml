@@ -6,7 +6,13 @@
 
     <groupId>exercise-kk</groupId>
     <artifactId>Gilded-Rose-KK</artifactId>
+    <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
+
+    <modules>
+        <module>guilded-rose-core</module>
+        <module>guilded-rose-web</module>
+    </modules>
 
     <properties>
         <!-- system/application properties -->

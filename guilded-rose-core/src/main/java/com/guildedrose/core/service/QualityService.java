@@ -1,12 +1,13 @@
-public class GildedRose {
+package com.guildedrose.core.service;
 
-    Item[] items;
+import com.guildedrose.core.model.Item;
 
-    public GildedRose(Item[] items) {
-        this.items = items;
+public class GildedRoseQualityServie {
+
+    private GildedRoseQualityServie() {
     }
 
-    public void updateQuality() {
+    public static void updateQuality(Item[] items) {
         for (int i = 0; i < items.length; i++) {
             if (!items[i].name.equals("Aged Brie")) {
                 if (items[i].quality > 0) {

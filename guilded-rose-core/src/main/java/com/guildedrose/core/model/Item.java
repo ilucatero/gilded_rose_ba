@@ -1,3 +1,5 @@
+package com.guildedrose.core.model;
+
 public class Item {
     public String name;
 

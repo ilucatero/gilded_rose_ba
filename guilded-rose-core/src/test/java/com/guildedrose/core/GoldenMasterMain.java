@@ -1,4 +1,9 @@
-public class GoldenMaster {
+package com.guildedrose.core;
+
+import com.guildedrose.core.GildedRose;
+import com.guildedrose.core.model.Item;
+
+public class GoldenMasterMain {
     public static void main(String[] args) {
         Item[] items = new Item[] {
             new Item("+5 Dexterity Vest", 10, 20), //
@@ -12,8 +17,6 @@ public class GoldenMaster {
             new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
             new Item("Conjured Mana Cake", 3, 6) };
 
-        GildedRose app = new GildedRose(items);
-
         int days = 20;
 
         for (int i = 0; i < days; i++) {
@@ -23,7 +26,7 @@ public class GoldenMaster {
                 System.out.println(item);
             }
             System.out.println();
-            app.updateQuality();
+            GildedRose.updateQuality(items);
         }
     }
 }
