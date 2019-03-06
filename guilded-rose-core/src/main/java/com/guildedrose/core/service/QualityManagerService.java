@@ -2,9 +2,9 @@ package com.guildedrose.core.service;
 
 import com.guildedrose.core.model.Item;
 
-public class QualityService {
+public class QualityManagerService {
 
-    private QualityService() {
+    private QualityManagerService() {
     }
 
     /**

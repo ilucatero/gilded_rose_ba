@@ -1,6 +1,6 @@
 package com.guildedrose.core;
 
-import com.guildedrose.core.GildedRose;
+import com.guildedrose.core.service.QualityManagerService;
 import com.guildedrose.core.model.Item;
 
 public class GoldenMasterMain {
@@ -26,7 +26,7 @@ public class GoldenMasterMain {
                 System.out.println(item);
             }
             System.out.println();
-            GildedRose.updateQuality(items);
+            QualityManagerService.updateQuality(items);
         }
     }
 }
