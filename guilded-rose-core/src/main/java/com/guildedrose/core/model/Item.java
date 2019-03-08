@@ -5,6 +5,7 @@ public class Item {
     public String name;
     public int sellIn;
     public int quality;
+    // TODO: add attributes : type & agingDegree (always>0) & aging mode(good or bad)
 
     public Item(String name, int sellIn, int quality) {
         this(0, name, sellIn, quality);
@@ -15,6 +16,8 @@ public class Item {
         this.sellIn = sellIn;
         this.quality = quality;
     }
+
+    // TODO: implement hashcode & equals methods
 
     @Override
     public String toString() {

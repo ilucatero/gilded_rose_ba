@@ -4,6 +4,8 @@ import com.guildedrose.core.model.Item;
 
 public class QualityManagerService {
 
+    // TODO: use the new attributes to calculate Quality: type & agingDegree (always>0) & aging mode(good or bad)
+
     /**
      * Update Quality of each item following the below constraints: <ul>
      *  <li>Once the sell by date has passed, Quality degrades twice as fast</li>
