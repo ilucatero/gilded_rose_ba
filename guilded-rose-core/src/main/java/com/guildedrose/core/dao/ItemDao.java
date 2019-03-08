@@ -12,7 +12,7 @@ import java.util.Optional;
 public class ItemDao implements Dao<Item> {
 
     // TODO: this only represent the real db, should ONLY be use for tests and be removed later on
-    private List<Item> items = Arrays.asList(
+    private static List<Item> items = Arrays.asList(
             new Item(1,"+5 Dexterity Vest", 10, 20),
             new Item(2,"Aged Brie", 2, 0),
             new Item(3,"Elixir of the Mongoose", 5, 7),
@@ -26,26 +26,44 @@ public class ItemDao implements Dao<Item> {
 
     @Override
     public Optional<Item> get(long id) {
-        return Optional.empty();
+        // TODO: implement functionality as required
+        return items.stream()
+                .filter(item -> (id == item.id))
+                .findAny();
     }
 
     @Override
     public List<Item> getAll() {
+        // TODO: implement functionality as required
         return items;
     }
 
     @Override
     public void save(Item item) {
+        // TODO: implement functionality as required
         items.add(item);
     }
 
     @Override
     public void update(Item item, String[] params) {
+        // TODO: implement functionality as required
 
+        Optional<Item> itemOptional = get(item.id);
+        if (itemOptional.isPresent()) {
+            for (String param : params) {
+                switch (param ) {
+                    case "name" : itemOptional.get().name = item.name; break;
+                    case "sellIn" : itemOptional.get().sellIn = item.sellIn; break;
+                    case "quality" : itemOptional.get().quality = item.quality; break;
+                    default:
+                }
+            }
+        }
     }
 
     @Override
     public void delete(Item item) {
+        // TODO: implement functionality as required
         items.remove(item);
     }
 }
