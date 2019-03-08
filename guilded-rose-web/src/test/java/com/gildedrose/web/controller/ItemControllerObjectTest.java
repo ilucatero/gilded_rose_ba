@@ -1,7 +1,6 @@
 package com.gildedrose.web.controller;
 
 import com.guildedrose.core.model.Item;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

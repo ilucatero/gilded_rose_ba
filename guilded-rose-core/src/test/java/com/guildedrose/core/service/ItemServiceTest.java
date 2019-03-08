@@ -1,6 +1,5 @@
 package com.guildedrose.core.service;
 
-import com.guildedrose.core.dao.ItemDao;
 import com.guildedrose.core.model.Item;
 import org.junit.Before;
 import org.junit.Test;
