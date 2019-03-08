@@ -1,7 +1,7 @@
 package com.guildedrose.core.model;
 
 public class Item {
-    public int id;
+    public long id;
     public String name;
     public int sellIn;
     public int quality;
