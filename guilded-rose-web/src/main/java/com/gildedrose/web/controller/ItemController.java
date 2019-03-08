@@ -7,11 +7,11 @@ import java.util.List;
 
 public class ItemController {
 
-    // TODO: replace by the spring bean
+    // TODO: replace it with the spring bean
     ItemService itemService = new ItemService();
 
     public List<Item> getItems(){
         return itemService.getItems();
     }
-    
+
 }

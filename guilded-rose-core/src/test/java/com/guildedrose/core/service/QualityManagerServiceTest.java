@@ -1,12 +1,13 @@
-package com.guildedrose.core;
+package com.guildedrose.core.service;
 
 import com.guildedrose.core.model.Item;
-import com.guildedrose.core.service.QualityManagerService;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class GildedRoseTest {
+public class QualityManagerServiceTest {
+
+    // TODO: the below test marked as fixme must be adapted to follow the new requirements (README)
 
     /**
      * Local method to run the updateQuality x number of times

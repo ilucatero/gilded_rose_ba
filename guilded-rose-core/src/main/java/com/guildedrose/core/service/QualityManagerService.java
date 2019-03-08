@@ -4,9 +4,6 @@ import com.guildedrose.core.model.Item;
 
 public class QualityManagerService {
 
-    private QualityManagerService() {
-    }
-
     /**
      * Update Quality of each item following the below constraints: <ul>
      *  <li>Once the sell by date has passed, Quality degrades twice as fast</li>
