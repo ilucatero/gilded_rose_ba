@@ -14,4 +14,9 @@ public class ItemService {
     public List<Item> getItems(){
         return itemDao.getAll();
     }
+
+    public boolean degrade(Long id){
+        // TODO: add the required functionality
+        return false;
+    }
 }

@@ -13,9 +13,5 @@ public class ItemControllerRestTest {
     public void setUp() throws Exception {
     }
 
-    @Test
-    public void basicTest(){
-        Assert.fail();
-    }
 
 }
