@@ -9,7 +9,7 @@ import java.util.List;
 public class ItemService {
 
     // TODO: replace by the spring bean
-    Dao<Item> itemDao  = new ItemDao();
+    protected Dao<Item> itemDao  = new ItemDao();
 
     public List<Item> getItems(){
         return itemDao.getAll();
