@@ -9,6 +9,8 @@ public class QualityManagerServiceTest {
 
     // TODO: the below test marked as fixme must be adapted to follow the new requirements (README)
 
+    private QualityManagerService qualityManagerService = new QualityManagerService();
+
     /**
      * Local method to run the updateQuality x number of times
      * @param items the items to update
@@ -16,7 +18,7 @@ public class QualityManagerServiceTest {
      */
     private void processQualityForDays(Item[] items, int days){
         for (int i=0; i < days; i++ ) {
-            QualityManagerService.updateQuality(items);
+            qualityManagerService.updateQuality(items);
         }
     }
 

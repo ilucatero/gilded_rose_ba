@@ -3,6 +3,10 @@ package com.guildedrose.core;
 import com.guildedrose.core.service.QualityManagerService;
 import com.guildedrose.core.model.Item;
 
+/**
+ * This class works and should only be taken as reference to legacy functionality. <br>
+ *     To see the newest functionality go check the unit tests
+ */
 public class GoldenMasterMain {
     public static void main(String[] args) {
         Item[] items = new Item[] {
@@ -19,6 +23,7 @@ public class GoldenMasterMain {
 
         int days = 20;
 
+        QualityManagerService qualityManagerService = new QualityManagerService();
         for (int i = 0; i < days; i++) {
             System.out.println("-------- day " + i + " --------");
             System.out.println("name, sellIn, quality");
@@ -26,7 +31,7 @@ public class GoldenMasterMain {
                 System.out.println(item);
             }
             System.out.println();
-            QualityManagerService.updateQuality(items);
+            qualityManagerService.updateQuality(items);
         }
     }
 }

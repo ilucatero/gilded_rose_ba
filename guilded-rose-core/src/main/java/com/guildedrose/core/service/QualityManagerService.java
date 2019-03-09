@@ -19,7 +19,7 @@ public class QualityManagerService {
      * </ul>
      * @param items
      */
-    public static void updateQuality(Item[] items) {
+    public void updateQuality(Item[] items) {
         for (Item item : items) {
             computeQuality(item);
 
@@ -36,7 +36,7 @@ public class QualityManagerService {
      * Compute the basic quality of a single item described on the specs
      * @param item
      */
-    private static void computeQuality(Item item) {
+    private void computeQuality(Item item) {
         if (!"Aged Brie".equals(item.name)) {
             if (item.quality > 0) {
                 item.quality--;
