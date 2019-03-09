@@ -6,6 +6,7 @@ import org.hamcrest.Matchers;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatchers;
 import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -58,16 +59,37 @@ public class ItemControllerRestTest {
     }
 
     @Test
-    @Ignore
     public void return200WhenSendingRequestToDegradeItem() throws Exception {
-       // this.testRestTemplate.put("http://localhost:" + this.port + ITEMS_REST_MAPPING + "/degrade/" , 9L);
+        // given
+        BDDMockito.given(itemService.degrade(ArgumentMatchers.anyLong())).willReturn(true);
 
-        //then(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        // when
+        mvc.perform(MockMvcRequestBuilders.patch(ITEMS_REST_MAPPING + "/degrade/1")
+                .contentType(MediaType.APPLICATION_JSON))
+                // then
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.is(true)));
 
-        // fixme : this test only the default response value
-        //assertTrue( entity.getBody());
+    }
 
-        //TODO : add more cases
+    @Test
+    @Ignore // FIXME: modify functionality to make it work
+    public void return404WhenSendingRequestToDegradeItemThatDoesntExist() throws Exception {
+        int expectedCode = 404;
+        // given
+        BDDMockito.given(itemService.degrade(ArgumentMatchers.anyLong())).willReturn(false);
+
+        // when it doesn't exist
+        mvc.perform(MockMvcRequestBuilders.patch(ITEMS_REST_MAPPING + "/degrade/"+Long.MAX_VALUE)
+                .contentType(MediaType.APPLICATION_JSON))
+                // then
+                .andExpect(MockMvcResultMatchers.status().is(expectedCode));
+
+        // when invalid ID (long negative number)
+        mvc.perform(MockMvcRequestBuilders.patch(ITEMS_REST_MAPPING + "/degrade/"+Long.MIN_VALUE)
+                .contentType(MediaType.APPLICATION_JSON))
+                // then
+                .andExpect(MockMvcResultMatchers.status().is(expectedCode));
     }
 
 }
