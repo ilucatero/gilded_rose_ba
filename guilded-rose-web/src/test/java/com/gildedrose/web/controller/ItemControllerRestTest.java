@@ -6,12 +6,12 @@ import org.hamcrest.Matchers;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
-import static org.mockito.Mockito.when;
+import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
@@ -25,11 +25,10 @@ import java.util.Arrays;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration({ "/spring-bean-web-conf-test.xml" })
+@ComponentScan("com.gildedrose.web.controller")
 @ActiveProfiles("dev")
-@WebMvcTest(ItemController.class)
+@WebMvcTest(value = ItemController.class, secure = false)
 @AutoConfigureMockMvc
-
-@Ignore // FIXME: there are errors while running this test class related to conf maybe
 public class ItemControllerRestTest {
     // TODO  complete unit tests for each method and limits using the mocked webServer "testRestTemplate"
 
@@ -45,13 +44,17 @@ public class ItemControllerRestTest {
     public void return200WhenSendingRequestToGetItems() throws Exception {
         Item item = new Item("Conjured Mana Cake", 3, 6);
 
-        when(itemService.getItems()).thenReturn( Arrays.asList(item));
+        // given
+        BDDMockito.given(itemService.getItems()).willReturn( Arrays.asList(item));
 
+        // when
         mvc.perform(MockMvcRequestBuilders.get(ITEMS_REST_MAPPING + "/get-items")
                 .contentType(MediaType.APPLICATION_JSON))
+         // then
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(1)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].name", Matchers.is(item.name)));
+
     }
 
     @Test
