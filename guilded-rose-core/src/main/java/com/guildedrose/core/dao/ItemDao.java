@@ -1,6 +1,7 @@
 package com.guildedrose.core.dao;
 
 import com.guildedrose.core.model.Item;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.Optional;
 /* TODO: At the moment the db only a basic list of items stored on memory, so when restart the values are lost.
    TODO: So, here the real implementation of this DAO will be required
 */
+@Component("ItemDao")
 public class ItemDao implements Dao<Item> {
 
     // TODO: this only represent the real db, should ONLY be use for tests and be removed later on

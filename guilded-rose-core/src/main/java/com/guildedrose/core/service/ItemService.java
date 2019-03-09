@@ -1,15 +1,20 @@
 package com.guildedrose.core.service;
 
 import com.guildedrose.core.dao.Dao;
-import com.guildedrose.core.dao.ItemDao;
 import com.guildedrose.core.model.Item;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ItemService {
 
-    // TODO: replace by the spring bean
-    protected Dao<Item> itemDao  = new ItemDao();
+    @Autowired
+    protected Dao<Item> itemDao;
+
+    @Autowired
+    QualityManagerService qualityManagerService;
 
     public List<Item> getItems(){
         return itemDao.getAll();
