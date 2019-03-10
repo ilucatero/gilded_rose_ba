@@ -1,28 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
 <head>
     <title>Gilded Rose</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="resources/css/style.css" rel="stylesheet">
+    <!-- TODO: replace favicon with the final version -->
+    <link href="resources/img/favicon.ico" rel="icon" type="image/x-icon" />
+
+    <!-- TODO: put this CSS files on resources/css/ -->
+    <link   href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link   href="resources/css/style.css" rel="stylesheet" />
+
+    <!-- TODO: put this JS files on resources/js/ -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js" ></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" ></script>
+
+    <script src="resources/js/script.js" ></script>
+
 </head>
 <body>
 
 
-<div id="header">
-    <p>Welcome to Gilded Rose </p>
+<div id="header" >
+    <p class="logo">Gilded Rose </p>
+    <!-- TODO: create the menu here if required -->
 </div>
 
 <div id="content">
+    <!-- TODO: at the moment content is static. Change it so it can be updated with different view depending on menu selection -->
     <p th:text="${message}"></p>
+    <table id="inventory" class="display" width="100%"></table>
 </div>
 
 <div id="footer">
-    <p>&copy; <script>document.write(new Date().getFullYear());</script>, Gilded Rose.</p>
+    <p id="copyright"></p>
 </div>
-
-<script src="resources/js/script.js"></script>
 
 </body>
 </html>

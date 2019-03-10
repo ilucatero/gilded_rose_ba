@@ -1,6 +1,12 @@
 #header{
-    max-width: 1200px;
-    margin: 0 auto;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    padding: 20px 10px;
+}
+
+p.logo {
+    font-size: 25px;
+    font-weight: bold;
 }
 
 #content{
@@ -8,7 +14,8 @@
     margin: 0 auto;
 }
 
+
 #footer{
-    max-width: 1200px;
-    margin: 0 auto;
+    position: fixed; /* or absolute */
+    right: 50%;
 }
