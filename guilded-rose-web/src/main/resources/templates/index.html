@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gilded Rose</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="resources/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+
+<div id="header">
+    <p>Welcome to Gilded Rose </p>
+</div>
+
+<div id="content">
+    <p th:text="${message}"></p>
+</div>
+
+<div id="footer">
+    <p>&copy; <script>document.write(new Date().getFullYear());</script>, Gilded Rose.</p>
+</div>
+
+<script src="resources/js/script.js"></script>
+
+</body>
+</html>
