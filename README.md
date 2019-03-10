@@ -69,3 +69,8 @@ We have recently signed a supplier of conjured items. This requires an update to
 
 Just for clarification, an item can never have its Quality increase above 50, however "Sulfuras" is a
  legendary item and as such its Quality is 80 and it never alters.
+ 
+ 
+ ### Run Instructions
+ 
+ To see the application running, please check the run instructions [here](RUN_INSTRUCTIONS.md).
