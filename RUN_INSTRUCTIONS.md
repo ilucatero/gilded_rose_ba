@@ -26,3 +26,7 @@ java -jar gilded-rose-web\target\gilded-rose-web-0.0.1-SNAPSHOT.jar -Dspring-boo
 # OR AS EXECUTABLE FILE
 /gilded-rose-web\target\gilded-rose-web-0.0.1-SNAPSHOT.jar -Dspring-boot.run.profiles=dev
 ```
+
+###### Run as java jar (option 2)
+
+Open the application at http://localhost:80/
