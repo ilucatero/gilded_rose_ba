@@ -1,7 +1,7 @@
-package com.gildedrose.web.controller;
+package com.gildedrose.web.controller.ws;
 
-import com.guildedrose.core.model.Item;
-import com.guildedrose.core.service.ItemService;
+import com.gildedrose.core.model.Item;
+import com.gildedrose.core.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

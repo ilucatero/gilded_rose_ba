@@ -1,10 +1,7 @@
-package com.gildedrose.web.controller;
+package com.gildedrose.web.controller.ws;
 
-import com.guildedrose.core.dao.Dao;
-import com.guildedrose.core.model.Item;
-import com.guildedrose.core.service.ItemService;
-import com.guildedrose.core.service.QualityManagerService;
-import org.hamcrest.Matchers;
+import com.gildedrose.core.model.Item;
+import com.gildedrose.core.service.ItemService;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
