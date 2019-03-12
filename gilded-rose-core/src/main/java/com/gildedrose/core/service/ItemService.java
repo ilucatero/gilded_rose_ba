@@ -15,7 +15,7 @@ public class ItemService {
     protected Dao<Item> itemDao;
 
     @Autowired
-    QualityManagerService qualityManagerService;
+    protected QualityManagerService qualityManagerService;
 
     public List<Item> getItems(){
         return itemDao.getAll();
@@ -25,9 +25,11 @@ public class ItemService {
         // TODO: add the required functionality
         Optional<Item> opItem = itemDao.get(id);
         if (opItem.isPresent() ) {
+            Item item = opItem.get();
             qualityManagerService.updateQuality(new Item[]{opItem.get()});
-            return true;
+            return itemDao.update(item, new String[]{"quality"});
         }
+
         return false;
     }
 }

@@ -29,10 +29,11 @@ function loadItems(){
                 .on('click', 'td.item-actions .item-degrade', function () {
                     var tr = $(this).closest('tr');
                     var row = table.row( tr );
-                    console.debug(row.data());
+                    console.debug("Updating data:", row.data());
                     var itemId = row.data().id;
-                  // TODO: call ms to degrade the selected item id
+                    // TODO: call ms to degrade the selected item id
                     // TODO: if success update dataTable data values for quality/sellIn
+                    degradeItem(itemId, table);
                 } );
         } catch (e) {
             console.error(e);
@@ -41,6 +42,24 @@ function loadItems(){
 
     request.fail(function( jqXHR, textStatus ) {
         console.log( "Request failed: ", textStatus );
+    });
+}
+
+function degradeItem(id, table){
+    var request = $.ajax({
+        url: "/items/degrade/"+id,
+        method: "PATCH",
+        dataType: "json",
+    });
+
+    request.done(function( response ) {
+        alert("Item " + id + " has been updated. update page to see changes");
+
+        // TODO: use the response to reload data of this row
+    });
+
+    request.fail(function( jqXHR, textStatus ) {
+        alert( "Could not update item with id " + id + ". Error:" + textStatus);
     });
 }
 

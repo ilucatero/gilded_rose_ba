@@ -28,7 +28,7 @@ public interface Dao<T> {
      * Update in the base the giving item
      * @param t
      */
-    void update(T t, String[] params);
+    boolean update(T t, String[] params);
 
     /**
      * Update in the base the giving item

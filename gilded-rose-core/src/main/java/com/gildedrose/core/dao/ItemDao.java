@@ -47,20 +47,22 @@ public class ItemDao implements Dao<Item> {
     }
 
     @Override
-    public void update(Item item, String[] params) {
+    public boolean update(Item item, String[] params) {
         // TODO: implement functionality as required
 
+        // TODO: once the db resource is implemented remove below code and do the actual db update
         Optional<Item> itemOptional = get(item.id);
         if (itemOptional.isPresent()) {
             for (String param : params) {
                 switch (param ) {
-                    case "name" : itemOptional.get().name = item.name; break;
-                    case "sellIn" : itemOptional.get().sellIn = item.sellIn; break;
-                    case "quality" : itemOptional.get().quality = item.quality; break;
+                    case "name" : itemOptional.get().name = item.name; return true;
+                    case "sellIn" : itemOptional.get().sellIn = item.sellIn; return true;
+                    case "quality" : itemOptional.get().quality = item.quality; return true;
                     default:
                 }
             }
         }
+        return false;
     }
 
     @Override
