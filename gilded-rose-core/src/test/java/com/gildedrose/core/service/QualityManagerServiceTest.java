@@ -1,6 +1,6 @@
-package com.guildedrose.core.service;
+package com.gildedrose.core.service;
 
-import com.guildedrose.core.model.Item;
+import com.gildedrose.core.model.Item;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

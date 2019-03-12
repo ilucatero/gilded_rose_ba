@@ -1,6 +1,6 @@
-package com.guildedrose.core.dao;
+package com.gildedrose.core.dao;
 
-import com.guildedrose.core.model.Item;
+import com.gildedrose.core.model.Item;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;

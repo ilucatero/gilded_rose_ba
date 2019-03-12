@@ -5,9 +5,9 @@
          http://www.springframework.org/schema/beans     http://www.springframework.org/schema/beans/spring-beans.xsd
        ">
 
-    <bean id="ItemService" class="com.guildedrose.core.service.ItemService" />
-    <bean id="QualityManagerService" class="com.guildedrose.core.service.QualityManagerService" />
+    <bean id="ItemService" class="com.gildedrose.core.service.ItemService" />
+    <bean id="QualityManagerService" class="com.gildedrose.core.service.QualityManagerService" />
 
-    <bean id="ItemDao" class="com.guildedrose.core.dao.ItemDao" />
+    <bean id="ItemDao" class="com.gildedrose.core.dao.ItemDao" />
 
 </beans>

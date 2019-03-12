@@ -1,4 +1,4 @@
-package com.guildedrose.core.model;
+package com.gildedrose.core.model;
 
 public class Item {
     public long id;

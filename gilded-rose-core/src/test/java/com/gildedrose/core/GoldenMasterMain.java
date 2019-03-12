@@ -1,7 +1,7 @@
-package com.guildedrose.core;
+package com.gildedrose.core;
 
-import com.guildedrose.core.service.QualityManagerService;
-import com.guildedrose.core.model.Item;
+import com.gildedrose.core.service.QualityManagerService;
+import com.gildedrose.core.model.Item;
 
 /**
  * This class works and should only be taken as reference to legacy functionality. <br>

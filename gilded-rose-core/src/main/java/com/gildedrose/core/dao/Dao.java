@@ -1,4 +1,4 @@
-package com.guildedrose.core.dao;
+package com.gildedrose.core.dao;
 
 import java.util.List;
 import java.util.Optional;

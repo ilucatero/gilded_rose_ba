@@ -1,13 +1,11 @@
-package com.guildedrose.core.service;
+package com.gildedrose.core.service;
 
-import com.guildedrose.core.dao.Dao;
-import com.guildedrose.core.dao.ItemDao;
-import com.guildedrose.core.model.Item;
+import com.gildedrose.core.dao.Dao;
+import com.gildedrose.core.model.Item;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;

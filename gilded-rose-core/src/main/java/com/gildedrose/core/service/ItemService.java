@@ -1,11 +1,10 @@
-package com.guildedrose.core.service;
+package com.gildedrose.core.service;
 
-import com.guildedrose.core.dao.Dao;
-import com.guildedrose.core.model.Item;
+import com.gildedrose.core.dao.Dao;
+import com.gildedrose.core.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
