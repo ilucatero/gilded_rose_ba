@@ -2,6 +2,8 @@ package com.gildedrose.web.controller.ws;
 
 import com.gildedrose.core.model.Item;
 import com.gildedrose.core.service.ItemService;
+import com.gildedrose.web.adapter.ItemAdapter;
+import com.gildedrose.web.dto.ItemDTO;
 import org.hamcrest.Matchers;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -38,15 +40,19 @@ public class ItemControllerRestTest {
 
     @MockBean
     private ItemService itemService;
+    @MockBean
+    protected ItemAdapter itemAdapter;
 
     private final String ITEMS_REST_MAPPING = "/items";
 
     @Test
     public void return200WhenSendingRequestToGetItems() throws Exception {
-        Item item = new Item("Conjured Mana Cake", 3, 6);
+        Item expectedItem = new Item(1,"Conjured Mana Cake", 3, 6);
+        ItemDTO expectedItemDto = new ItemDTO(1, "Conjured Mana Cake", 3, 6);
 
         // given
-        BDDMockito.given(itemService.getItems()).willReturn( Arrays.asList(item));
+        BDDMockito.given(itemService.getItems()).willReturn( Arrays.asList(expectedItem));
+        BDDMockito.given(itemAdapter.toDto(ArgumentMatchers.any())).willReturn(expectedItemDto);
 
         // when
         mvc.perform(MockMvcRequestBuilders.get(ITEMS_REST_MAPPING + "/get-items")
@@ -54,7 +60,7 @@ public class ItemControllerRestTest {
          // then
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(1)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].name", Matchers.is(item.name)));
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].name", Matchers.is(expectedItem.name)));
 
     }
 

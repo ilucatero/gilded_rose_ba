@@ -11,4 +11,6 @@
 
     <import resource="spring-bean-core-conf.xml"/>
 
+    <bean id="ItemAdapter" class="com.gildedrose.web.adapter.ItemAdapter" />
+
 </beans>

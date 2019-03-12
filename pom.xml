@@ -23,6 +23,7 @@
 
         <!-- external -->
         <spring-boot.version>2.1.3.RELEASE</spring-boot.version>
+        <modelmapper>2.3.2</modelmapper>
 
         <!-- test -->
         <junit.version>4.12</junit.version>

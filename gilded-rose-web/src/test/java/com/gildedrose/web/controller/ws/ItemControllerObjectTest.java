@@ -2,6 +2,8 @@ package com.gildedrose.web.controller.ws;
 
 import com.gildedrose.core.model.Item;
 import com.gildedrose.core.service.ItemService;
+import com.gildedrose.web.adapter.ItemAdapter;
+import com.gildedrose.web.dto.ItemDTO;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -20,6 +22,8 @@ public class ItemControllerObjectTest {
 
     @Mock
     private ItemService itemService;
+    @Mock
+    private ItemAdapter itemAdapter;
 
     @InjectMocks
     private ItemController itemController;
@@ -47,7 +51,7 @@ public class ItemControllerObjectTest {
 
     @Test
     public void getItemsTest(){
-        List<Item> items = itemController.getItems();
+        List<ItemDTO> items = itemController.getItems();
 
         assertNotNull(items);
         assertFalse(items.isEmpty());

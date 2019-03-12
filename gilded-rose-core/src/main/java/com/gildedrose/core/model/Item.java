@@ -7,6 +7,7 @@ public class Item {
     public int quality;
     // TODO: add attributes : type & agingDegree (always>0) & aging mode(good or bad)
 
+    public Item(){}
     public Item(String name, int sellIn, int quality) {
         this(0, name, sellIn, quality);
     }
