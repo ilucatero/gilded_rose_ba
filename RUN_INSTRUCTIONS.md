@@ -30,3 +30,5 @@ java -jar gilded-rose-web\target\gilded-rose-web-0.0.1-SNAPSHOT.jar -Dspring-boo
 ###### Run as java jar (option 2)
 
 Open the application at http://localhost:80/
+
+Notice that depending on the profile will the server will run on port **80 (dev)** or **8080 (prod)**.

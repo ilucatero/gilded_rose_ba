@@ -74,3 +74,29 @@ Just for clarification, an item can never have its Quality increase above 50, ho
  ### Run Instructions
  
  To see the application running, please check the run instructions [here](RUN_INSTRUCTIONS.md).
+ 
+ --------------------------------
+ 
+ ### The journey so far
+ 
+ As for now the web application shows a single page with the inventory details. The only action allowed to perform is to degrade
+  an item. To "degrade" mean means that the quality of an item will be qualified and reduced or increased in regards of the 
+  type of item (e.g. the aged Brie have a positive/good degree of degradation), all that using the legacy functionality (main).
+ 
+The site uses the root entry point for the view, and _/items_ webservice entry points to load inventory data.
+
+The code is divided on code and web modules. Core module contains all services and data related classes. Web module contains 
+  all front-end elements (js, css, html, etc.), entry-points definition, and general web server configuration.
+
+In regards of data base, for the aims of this prototype there is no any implementation so far, but it is simulated by a simple list of 
+predefined items (from legacy Golden Master code).
+
+### Next steps and todos
+ 
+The requested prototype app is not done yet. Must of the required new functionality for the Quality Management module is 
+not complete (update quality for "Conjured" items with double degradation for example).
+ 
+As presented up above, the database access and data management is not event implemented. But it is ok since the origin of the 
+actual inventory is not defined and it could come from a X or Y type of database, or event an external service/resource.
+
+So to complete the requirements, or at least the new functionality, all the TODOs on the code must to be covered.
