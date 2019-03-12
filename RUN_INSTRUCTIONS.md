@@ -19,15 +19,25 @@ mvn clean package
 mvn spring-boot:run -Dspring-boot.run.profiles=dev
 ```
 
-###### Run as java jar (option 2)
-```
-mvn clean package spring-boot:repackage 
-java -jar gilded-rose-web\target\gilded-rose-web-0.0.1-SNAPSHOT.jar -Dspring-boot.run.profiles=dev
-# OR AS EXECUTABLE FILE
-/gilded-rose-web\target\gilded-rose-web-0.0.1-SNAPSHOT.jar -Dspring-boot.run.profiles=dev
-```
+###### Run it directly (option 2)
+To run directly the file, via JVM or as an executable file, you must:
+  * Package it correctly
+    ```
+    mvn clean package spring-boot:repackage 
+    ```
+  * Run it
+    - as a jar file
+    ```
+    java -jar gilded-rose-web\target\gilded-rose-web-0.0.1-SNAPSHOT.jar -Dspring-boot.run.profiles=dev
+    ```
+    - as executable file
+    ```
+    # this will run like a scripted file as a service/daemon (lin: ./ ; win: \)
+    /gilded-rose-web\target\gilded-rose-web-0.0.1-SNAPSHOT.jar -Dspring-boot.run.profiles=dev
+    ```
 
-###### Run as java jar (option 2)
+
+###### Open the main page
 
 Open the application at http://localhost:80/
 
