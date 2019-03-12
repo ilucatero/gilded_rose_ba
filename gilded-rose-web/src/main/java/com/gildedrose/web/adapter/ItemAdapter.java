@@ -14,11 +14,17 @@ public class ItemAdapter extends AbstractDtoAdapter{
 
     @Override
     public ItemDTO toDto(Item itemModel) {
+        if(itemModel == null){
+            return null;
+        }
         return  modelMapper.map(itemModel, ItemDTO.class);
     }
 
     @Override
     public Item toModel(ItemDTO itemDto) {
+        if(itemDto == null){
+            return null;
+        }
         return modelMapper.map(itemDto, Item.class);
     }
 }

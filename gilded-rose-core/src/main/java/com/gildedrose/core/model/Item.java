@@ -11,7 +11,7 @@ public class Item {
     public Item(String name, int sellIn, int quality) {
         this(0, name, sellIn, quality);
     }
-    public Item(int id, String name, int sellIn, int quality) {
+    public Item(long id, String name, int sellIn, int quality) {
         this.id = id;
         this.name = name;
         this.sellIn = sellIn;
