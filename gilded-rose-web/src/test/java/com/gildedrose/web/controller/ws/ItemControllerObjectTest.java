@@ -84,4 +84,14 @@ public class ItemControllerObjectTest {
         assertNotNull(isUpdated );
         assertFalse(isUpdated );
     }
+
+    @Test
+    public void getItemTest(){
+        // TODO: test get single item with limit cases
+    }
+
+    @Test
+    public void getItemFailTest(){
+        // TODO: test get single item with no passed id
+    }
 }

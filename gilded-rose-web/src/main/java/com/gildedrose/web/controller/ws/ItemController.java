@@ -39,6 +39,12 @@ public class ItemController {
         return dtoItems ;
     }
 
+    @RequestMapping(value={"/{itemId}"}, method = RequestMethod.GET)
+    public ItemDTO get(@PathVariable Long itemId){
+        // TODO: implement and use it on frontend after update values
+        return null;
+    }
+
     @RequestMapping(value={"/degrade/{itemId}"}, method = RequestMethod.PATCH)
     public Boolean degrade(@PathVariable Long itemId){
         // TODO: determine if returning the actual updated item is necessary on frontend

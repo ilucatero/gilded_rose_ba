@@ -98,4 +98,14 @@ public class ItemControllerRestTest {
                 .andExpect(MockMvcResultMatchers.status().is(expectedCode));
     }
 
+    @Test
+    public void return200WhenSendingRequestToGetSingleItem(){
+        // TODO: test get single item with limit cases
+    }
+
+    @Test
+    public void return404WhenSendingRequestToGetSingleItemThatDoesntExist(){
+        // TODO: test get single item with no passed id
+    }
+
 }
