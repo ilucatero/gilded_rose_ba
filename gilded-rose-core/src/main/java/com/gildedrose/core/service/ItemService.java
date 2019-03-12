@@ -21,6 +21,10 @@ public class ItemService {
         return itemDao.getAll();
     }
 
+    public Optional<Item> get(Long id){
+        return itemDao.get(id);
+    }
+
     public boolean degrade(Long id){
         // TODO: add the required functionality
         Optional<Item> opItem = itemDao.get(id);

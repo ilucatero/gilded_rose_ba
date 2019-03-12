@@ -68,6 +68,10 @@ public class ItemServiceTest {
 
     }
 
+    @Test
+    public void getItemTest(){
+        // TODO: complete test and implement functionality if required
 
+    }
 
 }

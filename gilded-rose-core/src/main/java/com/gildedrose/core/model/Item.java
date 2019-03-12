@@ -8,9 +8,11 @@ public class Item {
     // TODO: add attributes : type & agingDegree (always>0) & aging mode(good or bad)
 
     public Item(){}
+
     public Item(String name, int sellIn, int quality) {
         this(0, name, sellIn, quality);
     }
+
     public Item(long id, String name, int sellIn, int quality) {
         this.id = id;
         this.name = name;
