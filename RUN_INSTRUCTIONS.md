@@ -1,6 +1,6 @@
 ### Run Instructions
 
-To run this spring-Boot application follow the steps as described bellow:
+To run this spring-boot application follow the steps as described bellow:
 
 ###### Clone project
 ```
@@ -41,4 +41,4 @@ To run directly the file, via JVM or as an executable file, you must:
 
 Open the application at http://localhost:80/
 
-Notice that depending on the profile will the server will run on port **80 (dev)** or **8080 (prod)**.
+Notice that depending on the profile the server will run on port **80 (dev)** or **8080 (prod)**.
