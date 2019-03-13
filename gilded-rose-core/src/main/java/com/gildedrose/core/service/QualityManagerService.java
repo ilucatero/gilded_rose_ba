@@ -4,7 +4,9 @@ import com.gildedrose.core.model.Item;
 
 public class QualityManagerService {
 
-    // TODO: use the new attributes to calculate Quality: type & agingDegree (always>0) & aging mode(good or bad)
+    // TODO 1: use the new attributes to calculate Quality: type & agingDegree (always>0) & aging mode(good or bad)
+    // TODO 2: since most of db gives a list of objects, change array to list to avoid unnecessary transformations
+    // TODO 3: to avoid multiple switch/ifs depending on type, generate a QualtyProcessorFactory class based on type
 
     /**
      * Update Quality of each item following the below constraints: <ul>
