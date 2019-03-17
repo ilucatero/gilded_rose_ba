@@ -3,6 +3,8 @@ package com.gildedrose.core;
 import com.gildedrose.core.service.QualityManagerService;
 import com.gildedrose.core.model.Item;
 
+import java.util.Arrays;
+
 /**
  * This class works and should only be taken as reference to legacy functionality. <br>
  *     To see the newest functionality go check the unit tests
@@ -31,7 +33,7 @@ public class GoldenMasterMain {
                 System.out.println(item);
             }
             System.out.println();
-            qualityManagerService.updateQuality(items);
+            qualityManagerService.updateQuality(Arrays.asList(items));
         }
     }
 }

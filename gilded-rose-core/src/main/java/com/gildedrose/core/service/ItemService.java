@@ -5,6 +5,7 @@ import com.gildedrose.core.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +31,7 @@ public class ItemService {
         Optional<Item> opItem = itemDao.get(id);
         if (opItem.isPresent() ) {
             Item item = opItem.get();
-            qualityManagerService.updateQuality(new Item[]{opItem.get()});
+            qualityManagerService.updateQuality(Arrays.asList(opItem.get()));
             return itemDao.update(item, new String[]{"quality"});
         }
 

@@ -3,6 +3,8 @@ package com.gildedrose.core.service;
 import com.gildedrose.core.model.Item;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 public class QualityManagerServiceTest {
@@ -18,7 +20,7 @@ public class QualityManagerServiceTest {
      */
     private void processQualityForDays(Item[] items, int days){
         for (int i=0; i < days; i++ ) {
-            qualityManagerService.updateQuality(items);
+            qualityManagerService.updateQuality(Arrays.asList(items));
         }
     }
 

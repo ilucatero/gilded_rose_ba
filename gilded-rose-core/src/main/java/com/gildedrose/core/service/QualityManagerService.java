@@ -2,6 +2,8 @@ package com.gildedrose.core.service;
 
 import com.gildedrose.core.model.Item;
 
+import java.util.List;
+
 public class QualityManagerService {
 
     // TODO 1: use the new attributes to calculate Quality: type & agingDegree (always>0) & aging mode(good or bad)
@@ -21,7 +23,7 @@ public class QualityManagerService {
      * </ul>
      * @param items
      */
-    public void updateQuality(Item[] items) {
+    public void updateQuality(List<Item> items) {
         for (Item item : items) {
             computeQuality(item);
 
