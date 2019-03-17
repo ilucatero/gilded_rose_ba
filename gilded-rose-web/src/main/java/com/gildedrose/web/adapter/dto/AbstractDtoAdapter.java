@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Bean;
  * Notice this uses spring @Autowired/@Bean to inject objects, so all classes that extends this Abstract class must
  * use the @Component annotation.
  */
-public abstract class AbstractDtoAdapter implements DtoAdapter<Item, ItemDTO> {
+public abstract class AbstractDtoAdapter<M, D>  implements DtoAdapter<M, D> {
 
     @Autowired
     protected ModelMapper modelMapper;

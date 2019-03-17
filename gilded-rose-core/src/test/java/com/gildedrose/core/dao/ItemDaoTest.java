@@ -12,7 +12,8 @@ import static org.junit.Assert.*;
 public class ItemDaoTest {
     // TODO: modify unit tests for each method and limits using mocked db(jdbc)
 
-    private ItemDao itemDao;
+
+    private Dao<Item> itemDao;
 
     @Before
     public final void setUp() throws Exception {
@@ -50,7 +51,7 @@ public class ItemDaoTest {
 
         Item oldItem = itemDao.get(9).get();
 
-        Item item =  new Item(9,"Conjured Mana Cake", 3, 6);
+        Item item =  new Item(9,"Conjured Mana Cake", 3, 6, "conjured");
         item.quality = 3;
 
         String itemStr = item.toString();

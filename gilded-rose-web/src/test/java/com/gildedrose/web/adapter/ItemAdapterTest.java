@@ -1,18 +1,13 @@
 package com.gildedrose.web.adapter;
 
+import com.gildedrose.core.model.type.AgeingMode;
 import com.gildedrose.core.model.Item;
-import com.gildedrose.core.service.ItemService;
-import com.gildedrose.web.controller.ws.ItemController;
 import com.gildedrose.web.dto.ItemDTO;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ContextConfiguration;
@@ -37,20 +32,22 @@ public class ItemAdapterTest {
     public final void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
+        String largeString = "qsqqsdùlkfsùfnzrognzrognzrufnzeofizeùofijzeùofijzeùfijzùeofijzùefijzùefijzeiofjznzez";
+
         items = Arrays.asList(
-                new Item(1,"+5 Dexterity Vest", 10, 20),
-                new Item(2,"Aged Brie", 2, 0),
-                new Item(3,"Elixir of the Mongoose", 5, 7),
-                new Item(4,"Sulfuras, Hand of Ragnaros", 0, 80),
-                new Item(5,"Sulfuras, Hand of Ragnaros", -1, 80),
-                new Item(6,"Backstage passes to a TAFKAL80ETC concert", 15, 20),
-                new Item(7,"Backstage passes to a TAFKAL80ETC concert", 10, 49),
-                new Item(8,"Backstage passes to a TAFKAL80ETC concert", 5, 49),
-                new Item(9,"Conjured Mana Cake", 3, 6),
+                new Item(1,"+5 Dexterity Vest", 10, 20, "vest"),
+                new Item(2,"Aged Brie", 2, 0, "cheese"),
+                new Item(3,"Elixir of the Mongoose", 5, 7, "elixir"),
+                new Item(4,"Sulfuras, Hand of Ragnaros", 0, 80, "sulfuras"),
+                new Item(5,"Sulfuras, Hand of Ragnaros", -1, 80, "sulfuras"),
+                new Item(6,"Backstage passes to a TAFKAL80ETC concert", 15, 20, "concert pass"),
+                new Item(7,"Backstage passes to a TAFKAL80ETC concert", 10, 49, "concert pass"),
+                new Item(8,"Backstage passes to a TAFKAL80ETC concert", 5, 49, "concert pass"),
+                new Item(9,"Conjured Mana Cake", 3, 6, "conjured"),
 
                 // limit values
-                new Item(Long.MAX_VALUE,"               ", Integer.MAX_VALUE, Integer.MAX_VALUE),
-                new Item(Long.MAX_VALUE,"               ", Integer.MIN_VALUE, Integer.MIN_VALUE)
+                new Item(Long.MAX_VALUE, largeString, Integer.MAX_VALUE, Integer.MAX_VALUE, largeString ),
+                new Item(Long.MAX_VALUE, largeString , Integer.MIN_VALUE, Integer.MIN_VALUE, largeString )
         );
 
     }
@@ -75,7 +72,7 @@ public class ItemAdapterTest {
     public void toDtoInvalidValuesTest() {
 
         List<Item> itemList = Arrays.asList(
-                new Item(-1,null, -1, -1),
+                new Item(-1,null, -1, -1, null),
                 new Item()
         );
 
@@ -101,7 +98,8 @@ public class ItemAdapterTest {
     @Test
     public void toModelTest() {
         for (Item itemExpectedValues: items) {
-            ItemDTO itemDto = new ItemDTO(itemExpectedValues.id, itemExpectedValues.name, itemExpectedValues.sellIn, itemExpectedValues.quality);
+            ItemDTO itemDto = new ItemDTO(itemExpectedValues.id, itemExpectedValues.name, itemExpectedValues.sellIn,
+                    itemExpectedValues.quality, itemExpectedValues.type);
             Item item = itemAdapter.toModel(itemDto);
 
             assertNotNull(item);
@@ -109,6 +107,10 @@ public class ItemAdapterTest {
             assertEquals(itemExpectedValues.name, item.name);
             assertEquals(itemExpectedValues.sellIn, item.sellIn);
             assertEquals(itemExpectedValues.quality, item.quality);
+
+            assertEquals(itemExpectedValues.type, item.type);
+            assertEquals(itemExpectedValues.ageingDegree, item.ageingDegree, 2);
+            assertEquals(itemExpectedValues.ageingMode, item.ageingMode);
         }
 
     }
@@ -119,7 +121,7 @@ public class ItemAdapterTest {
         List<String> tags = Arrays.asList("HQ");
 
         List<ItemDTO> itemList = Arrays.asList(
-                new ItemDTO(-1,null, -1, -1),
+                new ItemDTO(-1,null, -1, -1, null),
                 new ItemDTO()
         );
 
@@ -135,6 +137,9 @@ public class ItemAdapterTest {
             assertEquals(itemExpectedValues.sellIn, item.sellIn);
             assertEquals(itemExpectedValues.quality, item.quality);
 
+            assertEquals(null, item.type);
+            assertEquals(01.f, item.ageingDegree, 2);
+            assertEquals(AgeingMode.BAD, item.ageingMode);
         }
 
         Item item = itemAdapter.toModel(null);

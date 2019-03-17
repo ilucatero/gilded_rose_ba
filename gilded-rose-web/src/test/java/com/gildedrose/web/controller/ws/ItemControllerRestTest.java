@@ -47,8 +47,8 @@ public class ItemControllerRestTest {
 
     @Test
     public void return200WhenSendingRequestToGetItems() throws Exception {
-        Item expectedItem = new Item(1,"Conjured Mana Cake", 3, 6);
-        ItemDTO expectedItemDto = new ItemDTO(1, "Conjured Mana Cake", 3, 6);
+        Item expectedItem = new Item(1,"Conjured Mana Cake", 3, 6, "conjured");
+        ItemDTO expectedItemDto = new ItemDTO(1, "Conjured Mana Cake", 3, 6, "conjured");
 
         // given
         BDDMockito.given(itemService.getItems()).willReturn( Arrays.asList(expectedItem));

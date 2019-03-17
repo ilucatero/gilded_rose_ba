@@ -25,9 +25,9 @@ public class QualityManagerServiceTest {
     @Test
     public void updateQualityBasicTest(){
         Item[] items = new Item[] {
-                new Item("+5 Dexterity Vest", 10, 20),
-                new Item("Aged Brie", 2, 0),
-                new Item("Elixir of the Mongoose", 5, 7),
+                new Item(1,"+5 Dexterity Vest", 10, 20, "vest"),
+                new Item(2,"Aged Brie", 2, 0, "cheese"),
+                new Item(3,"Elixir of the Mongoose", 5, 7,"elixir"),
         };
 
         processQualityForDays(items, 20);
@@ -41,8 +41,8 @@ public class QualityManagerServiceTest {
     @Test
     public void updateQualitySulfurasTest(){
         Item[] items = new Item[] {
-                new Item("Sulfuras, Hand of Ragnaros", 0, 80),
-                new Item("Sulfuras, Hand of Ragnaros", -1, 80),
+                new Item(1,"Sulfuras, Hand of Ragnaros", 0, 80, "sulfuras"),
+                new Item(2,"Sulfuras, Hand of Ragnaros", -1, 80, "sulfuras"),
         };
 
         processQualityForDays(items, 20);
@@ -55,9 +55,9 @@ public class QualityManagerServiceTest {
     @Test
     public void updateQualityBackstagePassesTest(){
         Item[] items = new Item[] {
-                new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+                new Item(1,"Backstage passes to a TAFKAL80ETC concert", 15, 20, "concert pass"),
+                new Item(2,"Backstage passes to a TAFKAL80ETC concert", 10, 49, "concert pass"),
+                new Item(3,"Backstage passes to a TAFKAL80ETC concert", 5, 49, "concert pass"),
         };
 
         processQualityForDays(items, 20);
@@ -71,7 +71,7 @@ public class QualityManagerServiceTest {
     @Test
     public void updateQualityConjuredTest(){
         Item[] items = new Item[] {
-                new Item("Conjured Mana Cake", 3, 6),
+                new Item(1,"Conjured Mana Cake", 3, 6, "conjured"),
         };
 
         processQualityForDays(items, 20);
