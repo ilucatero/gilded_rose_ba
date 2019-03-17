@@ -31,7 +31,7 @@ public class ItemService {
         Optional<Item> opItem = itemDao.get(id);
         if (opItem.isPresent() ) {
             Item item = opItem.get();
-            qualityManagerService.updateQuality(Arrays.asList(opItem.get()));
+            qualityManagerService.updateQuality(opItem.get());
             return itemDao.update(item, new String[]{"quality"});
         }
 

@@ -1,14 +1,16 @@
 package com.gildedrose.core.service;
 
 import com.gildedrose.core.model.Item;
+import com.gildedrose.core.service.factories.ItemProcessorFactory;
 
 import java.util.List;
 
 public class QualityManagerService {
 
     // TODO 1: use the new attributes to calculate Quality: type & agingDegree (always>0) & aging mode(good or bad)
-    // TODO 2: since most of db gives a list of objects, change array to list to avoid unnecessary transformations
-    // TODO 3: to avoid multiple switch/ifs depending on type, generate a QualtyProcessorFactory class based on type
+    // TODO 2: to avoid multiple switch/ifs depending on type, generate a QualtyProcessorFactory class based on type
+
+    protected ItemProcessorFactory itemProcessorFactory = ItemProcessorFactory.getInstance();
 
     /**
      * Update Quality of each item following the below constraints: <ul>
@@ -25,30 +27,17 @@ public class QualityManagerService {
      */
     public void updateQuality(List<Item> items) {
         for (Item item : items) {
-            computeQuality(item);
-
-            item.sellIn--;
-
-            // quality is double computed if sellIn < 0
-            if (item.sellIn < 0) {
-                computeQuality(item);
-            }
+            updateQuality(item);
         }
     }
 
     /**
-     * Compute the basic quality of a single item described on the specs
+     * Implementation for single item.
+     * see {@link #updateQuality(List)}
      * @param item
      */
-    private void computeQuality(Item item) {
-        if (!"Aged Brie".equals(item.name)) {
-            if (item.quality > 0) {
-                item.quality--;
-            }
-        } else {
-            if (item.quality < 50) {
-                item.quality++;
-            }
-        }
+    public void updateQuality(Item item) {
+            itemProcessorFactory .getItemProcessor(item.type).updateQuality(item);
     }
+
 }

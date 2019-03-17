@@ -1,11 +1,13 @@
 package com.gildedrose.core.service.factories;
 
+
 import com.gildedrose.core.model.Item;
 
 /**
  * Provides base functionality for the ItemProcessor
  */
-public abstract class ItemProcessorAbstract implements ItemProcessor {
+public class ItemProcessorCheeseImp extends ItemProcessorAbstract{
+
 
     /**
      * Process the quality of an item based on its attributes and type
@@ -28,8 +30,8 @@ public abstract class ItemProcessorAbstract implements ItemProcessor {
      * @param item
      */
     private void computeQuality(Item item) {
-        if (item.quality > 0) {
-            item.quality--;
+        if (item.quality < 50) {
+            item.quality++;
         }
     }
 }

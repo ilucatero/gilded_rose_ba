@@ -17,8 +17,7 @@ public class ItemProcessorFactory{
         processorMap = new HashMap<>();
 
         // TODO: initialize a map with ItemProcessors to avoid create new objects each time
-        // TODO: use the actual type instead of name
-        // processorMap.put("aged brie", new ItemProcessorCheese());
+        processorMap.put("CHEESE", new ItemProcessorCheeseImp());
     }
 
     /**
