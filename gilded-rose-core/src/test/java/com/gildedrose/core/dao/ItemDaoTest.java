@@ -33,7 +33,7 @@ public class ItemDaoTest {
     public final void getOneTest(){
         // TODO: complete test and implement functionality if required
 
-        Optional<Item> items = itemDao.get(1);
+        Optional<Item> items = itemDao.get(1L);
 
         assertNotNull(items);
         assertTrue(items.isPresent());
@@ -49,7 +49,7 @@ public class ItemDaoTest {
     public final void getUpdateTest(){
         // TODO: complete test and implement functionality if required
 
-        Item oldItem = itemDao.get(9).get();
+        Item oldItem = itemDao.get(9L).get();
 
         Item item =  new Item(9,"Conjured Mana Cake", 3, 6, "conjured");
         item.quality = 3;
@@ -57,7 +57,7 @@ public class ItemDaoTest {
         String itemStr = item.toString();
         itemDao.update(item, new String[]{"quality"});
 
-        Item newItem = itemDao.get(9).get();
+        Item newItem = itemDao.get(9L).get();
 
         // check the submitted item was not modified
         assertNotNull(item);

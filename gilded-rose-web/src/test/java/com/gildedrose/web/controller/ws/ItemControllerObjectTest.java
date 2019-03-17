@@ -7,10 +7,7 @@ import com.gildedrose.web.dto.ItemDTO;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -46,12 +43,21 @@ public class ItemControllerObjectTest {
         );
 
         Mockito.when(itemService.getItems()).thenReturn(items);
+        Mockito.when(itemService.get(ArgumentMatchers.any())).thenReturn(items);
         Mockito.when(itemService.degrade(Mockito.any(Long.class))).thenReturn(true);
     }
 
     @Test
     public void getItemsTest(){
-        List<ItemDTO> items = itemController.getItems();
+        List<ItemDTO> items = itemController.getAll();
+
+        assertNotNull(items);
+        assertFalse(items.isEmpty());
+    }
+
+    @Test
+    public void getItemTest(){
+        List<ItemDTO> items = itemController.getList(Arrays.asList(1L,2L,4L)).getBody();
 
         assertNotNull(items);
         assertFalse(items.isEmpty());
@@ -85,13 +91,4 @@ public class ItemControllerObjectTest {
         assertFalse(isUpdated );
     }
 
-    @Test
-    public void getItemTest(){
-        // TODO: test get single item with limit cases
-    }
-
-    @Test
-    public void getItemFailTest(){
-        // TODO: test get single item with no passed id
-    }
 }

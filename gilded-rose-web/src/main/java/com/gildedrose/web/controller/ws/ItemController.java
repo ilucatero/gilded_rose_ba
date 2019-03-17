@@ -9,10 +9,16 @@ import org.modelmapper.config.Configuration;
 import org.modelmapper.convention.NamingConventions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +33,7 @@ public class ItemController {
     protected ItemAdapter itemAdapter;
 
     @RequestMapping(value={"/get-items"}, method = RequestMethod.GET)
-    public List<ItemDTO> getItems(){
+    public List<ItemDTO> getAll(){
 
         // TODO : implement pagination
         List<Item> items = itemService.getItems();
@@ -39,10 +45,17 @@ public class ItemController {
         return dtoItems ;
     }
 
-    @RequestMapping(value={"/{itemId}"}, method = RequestMethod.GET)
-    public ItemDTO get(@PathVariable Long itemId){
-        // TODO: implement and use it on frontend after update values
-        return null;
+    @RequestMapping(value={"/{itemIds}"}, method = RequestMethod.GET)
+    public ResponseEntity<List<ItemDTO>> getList(@PathVariable List<Long> itemIds){
+
+        List<Item> items = itemService.get(itemIds);
+        if (!items.isEmpty()) {
+            List<ItemDTO> dtoItems = items.stream().map(item -> itemAdapter.toDto(item)).collect(Collectors.toList());
+
+            return ResponseEntity.ok(dtoItems);
+        }
+        return  new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
     }
 
     @RequestMapping(value={"/degrade/{itemId}"}, method = RequestMethod.PATCH)

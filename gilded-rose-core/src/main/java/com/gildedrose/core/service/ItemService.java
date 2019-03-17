@@ -5,7 +5,6 @@ import com.gildedrose.core.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,8 +21,8 @@ public class ItemService {
         return itemDao.getAll();
     }
 
-    public Optional<Item> get(Long id){
-        return itemDao.get(id);
+    public List<Item> get(List<Long> ids){
+        return itemDao.find(ids);
     }
 
     public boolean degrade(Long id){

@@ -4,9 +4,11 @@ import com.gildedrose.core.model.Item;
 import com.gildedrose.core.model.type.AgeingMode;
 import org.springframework.stereotype.Component;
 
+import javax.swing.text.html.Option;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /* TODO: At the moment the db only a basic list of items stored on memory, so when restart the values are lost.
    TODO: So, here the real implementation of this DAO will be required
@@ -28,7 +30,15 @@ public class ItemDao implements Dao<Item> {
     );
 
     @Override
-    public Optional<Item> get(long id) {
+    public List<Item> find(List<Long> ids) {
+        // TODO: implement functionality as required
+        return items.stream()
+                .filter(item -> (ids.contains(item.id)))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<Item> get(Long id) {
         // TODO: implement functionality as required
         return items.stream()
                 .filter(item -> (id == item.id))
@@ -53,12 +63,18 @@ public class ItemDao implements Dao<Item> {
 
         // TODO: once the db resource is implemented remove below code and do the actual db update
         Optional<Item> itemOptional = get(item.id);
-        if (itemOptional.isPresent()) {
+        if (!itemOptional.isPresent()) {
             for (String param : params) {
-                switch (param ) {
-                    case "name" : itemOptional.get().name = item.name; return true;
-                    case "sellIn" : itemOptional.get().sellIn = item.sellIn; return true;
-                    case "quality" : itemOptional.get().quality = item.quality; return true;
+                switch (param) {
+                    case "name":
+                        itemOptional.get().name = item.name;
+                        return true;
+                    case "sellIn":
+                        itemOptional.get().sellIn = item.sellIn;
+                        return true;
+                    case "quality":
+                        itemOptional.get().quality = item.quality;
+                        return true;
                     default:
                 }
             }

@@ -4,6 +4,7 @@ import com.gildedrose.core.model.Item;
 import com.gildedrose.core.service.ItemService;
 import com.gildedrose.web.adapter.ItemAdapter;
 import com.gildedrose.web.dto.ItemDTO;
+import org.assertj.core.util.Lists;
 import org.hamcrest.Matchers;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -99,13 +100,42 @@ public class ItemControllerRestTest {
     }
 
     @Test
-    public void return200WhenSendingRequestToGetSingleItem(){
-        // TODO: test get single item with limit cases
+    public void return200WhenSendingRequestToGetSingleItem() throws Exception {
+        Item expectedItem1 = new Item(1,"Conjured Mana Cake", 3, 6, "conjured");
+        Item expectedItem2 = new Item(2,"Conjured Mana Cake 2", 3, 6, "conjured");
+        Item expectedItem3 = new Item(3,"Conjured Mana Cake 3", 3, 6, "conjured");
+        ItemDTO expectedItemDto1 = new ItemDTO(1, "Conjured Mana Cake", 3, 6, "conjured");
+        ItemDTO expectedItemDto2 = new ItemDTO(2, "Conjured Mana Cake 2", 3, 6, "conjured");
+        ItemDTO expectedItemDto3 = new ItemDTO(3, "Conjured Mana Cake 3", 3, 6, "conjured");
+
+        // given
+        BDDMockito.given(itemService.get(ArgumentMatchers.any())).willReturn( Arrays.asList(expectedItem1,expectedItem2,expectedItem3));
+        BDDMockito.given(itemAdapter.toDto(ArgumentMatchers.any())).willReturn(expectedItemDto1,expectedItemDto2,expectedItemDto3);
+
+        // when
+        mvc.perform(MockMvcRequestBuilders.get(ITEMS_REST_MAPPING + "/1,3,8")
+                .contentType(MediaType.APPLICATION_JSON))
+                // then
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(3)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].name", Matchers.is(expectedItem1.name)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[1].name", Matchers.is(expectedItem2.name)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[2].name", Matchers.is(expectedItem3.name)));
     }
 
     @Test
-    public void return404WhenSendingRequestToGetSingleItemThatDoesntExist(){
-        // TODO: test get single item with no passed id
+    public void return404WhenSendingRequestToGetSingleItemThatDoesntExist() throws Exception {
+        ItemDTO expectedItemDto = new ItemDTO(1, "Conjured Mana Cake", 3, 6, "conjured");
+
+        // given
+        BDDMockito.given(itemService.get(ArgumentMatchers.any())).willReturn(Lists.emptyList());
+        BDDMockito.given(itemAdapter.toDto(ArgumentMatchers.any())).willReturn(expectedItemDto);
+
+        // when
+        mvc.perform(MockMvcRequestBuilders.get(ITEMS_REST_MAPPING + "/-1")
+                .contentType(MediaType.APPLICATION_JSON))
+                // then
+                .andExpect(MockMvcResultMatchers.status().is(204));
     }
 
 }
