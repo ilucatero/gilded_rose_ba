@@ -9,7 +9,7 @@ public class Item {
     public int sellIn;
     public int quality;
     public String type;
-    public float ageingDegree;
+    public int ageingDegree;
     public AgeingMode ageingMode;
 
     public Item(){}
@@ -19,10 +19,10 @@ public class Item {
     }
 
     public Item(long id, String name, int sellIn, int quality, String type) {
-        this(id, name, sellIn, quality, type, 1.0f, AgeingMode.BAD);
+        this(id, name, sellIn, quality, type, 1, AgeingMode.BAD);
     }
 
-    public Item(long id, String name, int sellIn, int quality, String type, float ageingDegree, AgeingMode ageingMode) {
+    public Item(long id, String name, int sellIn, int quality, String type, int ageingDegree, AgeingMode ageingMode) {
         this.id = id;
         this.name = name;
         this.sellIn = sellIn;
@@ -45,7 +45,7 @@ public class Item {
         return ageingDegree;
     }
 
-    public void setAgeingDegree(float ageingDegree) {
+    public void setAgeingDegree(int ageingDegree) {
         this.ageingDegree = ageingDegree;
     }
 

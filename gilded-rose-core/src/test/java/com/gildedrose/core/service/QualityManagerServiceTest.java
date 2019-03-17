@@ -49,7 +49,18 @@ public class QualityManagerServiceTest {
                 new Item(3,"Elixir of the Mongoose", 5, 7,"elixir",4, AgeingMode.BAD),
         };
 
-        processQualityForDays(items, 20);
+        processQualityForDays(items, 2);
+
+        assertThat(items[0].sellIn , Is.is(8));
+        assertThat(items[0].quality, Is.is(12));
+
+        assertThat(items[1].sellIn , Is.is(0));
+        assertThat(items[1].quality, Is.is(0));
+
+        assertThat(items[2].sellIn , Is.is(3));
+        assertThat(items[2].quality, Is.is(0));
+
+        processQualityForDays(items, 18);
 
         assertTrue(items[0].sellIn==-10 && items[0].quality==0);
         assertTrue(items[1].sellIn==-18 && items[1].quality==0);
@@ -83,17 +94,27 @@ public class QualityManagerServiceTest {
                 new Item(2,"Aged Brie", 2, 0, "cheese", 4, AgeingMode.GOOD),
                 new Item(3,"Elixir of the Mongoose", 5, 7,"elixir",4, AgeingMode.GOOD),
         };
+        processQualityForDays(items, 2);
 
-        processQualityForDays(items, 20);
+        assertThat(items[0].sellIn , Is.is(8));
+        assertThat(items[0].quality, Is.is(33));
+
+        assertThat(items[1].sellIn , Is.is(0));
+        assertThat(items[1].quality, Is.is(8));
+
+        assertThat(items[2].sellIn , Is.is(3));
+        assertThat(items[2].quality, Is.is(15));
+
+        processQualityForDays(items, 18);
 
         assertThat(items[0].sellIn , Is.is(-10));
         assertThat(items[0].quality, Is.is(50));
 
         assertThat(items[1].sellIn , Is.is(-18));
-        assertThat(items[1].quality, Is.is(38));
+        assertThat(items[1].quality, Is.is(50));
 
         assertThat(items[2].sellIn , Is.is(-15));
-        assertThat(items[2].quality, Is.is(42));
+        assertThat(items[2].quality, Is.is(50));
     }
 
     @Test(expected = IllegalArgumentException.class)

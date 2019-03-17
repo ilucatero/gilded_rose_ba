@@ -35,13 +35,15 @@ public abstract class ItemProcessorAbstract implements ItemProcessor {
      * @param item
      */
     protected void computeQuality(Item item) {
-        if (item.ageingMode.equals(AgeingMode.BAD)){
-            if (item.quality > 0) {
-                item.quality--;
-            }
-        } else{
-            if (item.quality < 50) {
-                item.quality++;
+        for (int i = 0; i < item.ageingDegree; i++) {
+            if (item.ageingMode.equals(AgeingMode.BAD)) {
+                if (item.quality > 0) {
+                    item.quality--;
+                }
+            } else {
+                if (item.quality < 50) {
+                    item.quality++;
+                }
             }
         }
     }
