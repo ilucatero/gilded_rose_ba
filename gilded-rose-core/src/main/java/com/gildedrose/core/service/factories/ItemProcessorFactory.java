@@ -38,11 +38,11 @@ public class ItemProcessorFactory{
      * @return
      */
     public ItemProcessor getItemProcessor(String itemType){
-        if(itemType == null){
+        if(itemType == null || itemType.isEmpty()){
             return null;
         }
 
-        ItemProcessor itemProcessor = processorMap.getOrDefault(itemType, defaultItemProcessor);
+        ItemProcessor itemProcessor = processorMap.getOrDefault(itemType.toUpperCase(), defaultItemProcessor);
         return itemProcessor;
     }
 }

@@ -7,37 +7,35 @@ import static org.junit.Assert.*;
 
 public class ItemProcessorFactoryTest {
 
+    protected ItemProcessorFactory itemProcessorFactory;
+
     @Before
     public final void setUp() throws Exception {
-
-    }
-
-    @Test
-    public void factoryCreationTest(){
-        // ItemProcessor itemProcessor = ItemProcessorFactory.getInstance().getItemProcessor("myType");
-
-        assertTrue(true);
+        itemProcessorFactory = ItemProcessorFactory.getInstance();
     }
 
     @Test
     public void itemProcessorDefaultForKnownTypeTest(){
-        // TODO: test default item processor is fetch from factory
-        // TODO: test the itemProcessor works
-        assertTrue(true);
+        ItemProcessor itemProcessor = itemProcessorFactory.getItemProcessor("vest");
+        assertNotNull(itemProcessor);
+        // should get the default
+        assertTrue(itemProcessor.getClass().equals(ItemProcessorDefaultImp.class));
     }
 
 
     @Test
     public void itemProcessorDefaultForUnKnownTypeTest(){
-        // TODO: test default item processor is fetch from factory
-        // TODO: test the itemProcessor works
-        assertTrue(true);
+        ItemProcessor itemProcessor = itemProcessorFactory.getItemProcessor("unknowingType");
+        assertNotNull(itemProcessor);
+        // should get the default
+        assertTrue(itemProcessor.getClass().equals(ItemProcessorDefaultImp.class));
     }
 
     @Test
     public void itemProcessorForGivenTypeTest(){
-        // TODO: test X item processor is fetch from factory
-        // TODO: test the itemProcessor works
-        assertTrue(true);
+        ItemProcessor itemProcessor = itemProcessorFactory.getItemProcessor("CheEsE");
+        assertNotNull(itemProcessor);
+        // should get the default
+        assertTrue(itemProcessor.getClass().equals(ItemProcessorCheeseImp.class));
     }
 }
