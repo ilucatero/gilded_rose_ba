@@ -2,36 +2,22 @@ package com.gildedrose.core.service.factories;
 
 
 import com.gildedrose.core.model.Item;
+import com.gildedrose.core.model.type.AgeingMode;
 
 /**
  * Provides base functionality for the ItemProcessor
  */
 public class ItemProcessorCheeseImp extends ItemProcessorAbstract{
 
-
-    /**
-     * Process the quality of an item based on its attributes and type
-     * @param item
-     */
-    @Override
-    public void updateQuality(Item item){
-        computeQuality(item);
-
-        item.sellIn--;
-
-        // quality is double computed if sellIn < 0
-        if (item.sellIn < 0) {
-            computeQuality(item);
-        }
-    }
+    // TODO 1: use the new attributes to calculate Quality: agingDegree (always>0)
 
     /**
      * Compute the basic quality of a single item described on the specs
      * @param item
      */
-    private void computeQuality(Item item) {
-        if (item.quality < 50) {
-            item.quality++;
-        }
+    @Override
+    protected void computeQuality(Item item) {
+            super.computeQuality(item);
     }
+
 }

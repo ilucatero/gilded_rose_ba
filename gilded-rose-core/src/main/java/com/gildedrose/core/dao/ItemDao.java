@@ -1,6 +1,7 @@
 package com.gildedrose.core.dao;
 
 import com.gildedrose.core.model.Item;
+import com.gildedrose.core.model.type.AgeingMode;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -16,7 +17,7 @@ public class ItemDao implements Dao<Item> {
     // TODO: this only represent the real db, should ONLY be use for tests and be removed later on
     private static List<Item> items = Arrays.asList(
             new Item(1,"+5 Dexterity Vest", 10, 20, "vest"),
-            new Item(2,"Aged Brie", 2, 0, "cheese"),
+            new Item(2,"Aged Brie", 2, 0, "cheese", 1, AgeingMode.GOOD),
             new Item(3,"Elixir of the Mongoose", 5, 7, "normal power drink"),
             new Item(4,"Sulfuras, Hand of Ragnaros", 0, 80, "sulfuras"),
             new Item(5,"Sulfuras, Hand of Ragnaros", -1, 80, "sulfuras"),

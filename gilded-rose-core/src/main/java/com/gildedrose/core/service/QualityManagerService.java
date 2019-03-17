@@ -7,9 +7,6 @@ import java.util.List;
 
 public class QualityManagerService {
 
-    // TODO 1: use the new attributes to calculate Quality: type & agingDegree (always>0) & aging mode(good or bad)
-    // TODO 2: to avoid multiple switch/ifs depending on type, generate a QualtyProcessorFactory class based on type
-
     protected ItemProcessorFactory itemProcessorFactory = ItemProcessorFactory.getInstance();
 
     /**

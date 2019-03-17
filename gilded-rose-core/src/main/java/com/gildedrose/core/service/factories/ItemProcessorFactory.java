@@ -16,7 +16,7 @@ public class ItemProcessorFactory{
         defaultItemProcessor = new ItemProcessorDefaultImp();
         processorMap = new HashMap<>();
 
-        // TODO: initialize a map with ItemProcessors to avoid create new objects each time
+        // TODO: initialize a map with all required ItemProcessors
         processorMap.put("CHEESE", new ItemProcessorCheeseImp());
     }
 

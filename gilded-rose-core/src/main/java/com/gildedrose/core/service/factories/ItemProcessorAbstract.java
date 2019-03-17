@@ -1,11 +1,15 @@
 package com.gildedrose.core.service.factories;
 
 import com.gildedrose.core.model.Item;
+import com.gildedrose.core.model.type.AgeingMode;
 
 /**
  * Provides base functionality for the ItemProcessor
  */
 public abstract class ItemProcessorAbstract implements ItemProcessor {
+
+    // TODO 1: use the new attributes to calculate Quality: ageingDegree (always>0)
+
 
     /**
      * Process the quality of an item based on its attributes and type
@@ -13,6 +17,9 @@ public abstract class ItemProcessorAbstract implements ItemProcessor {
      */
     @Override
     public void updateQuality(Item item){
+        if(item.ageingDegree<0){
+            throw new IllegalArgumentException("The ageing degree must not be lower than zero.");
+        }
         computeQuality(item);
 
         item.sellIn--;
@@ -27,9 +34,15 @@ public abstract class ItemProcessorAbstract implements ItemProcessor {
      * Compute the basic quality of a single item described on the specs
      * @param item
      */
-    private void computeQuality(Item item) {
-        if (item.quality > 0) {
-            item.quality--;
+    protected void computeQuality(Item item) {
+        if (item.ageingMode.equals(AgeingMode.BAD)){
+            if (item.quality > 0) {
+                item.quality--;
+            }
+        } else{
+            if (item.quality < 50) {
+                item.quality++;
+            }
         }
     }
 }

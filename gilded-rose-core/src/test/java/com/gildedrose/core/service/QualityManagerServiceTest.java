@@ -1,6 +1,8 @@
 package com.gildedrose.core.service;
 
 import com.gildedrose.core.model.Item;
+import com.gildedrose.core.model.type.AgeingMode;
+import org.hamcrest.core.Is;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -25,18 +27,84 @@ public class QualityManagerServiceTest {
     }
 
     @Test
-    public void updateQualityBasicTest(){
+    public void updateQualityBasicBadModeTest(){
         Item[] items = new Item[] {
                 new Item(1,"+5 Dexterity Vest", 10, 20, "vest"),
-                new Item(2,"Aged Brie", 2, 0, "cheese"),
-                new Item(3,"Elixir of the Mongoose", 5, 7,"elixir"),
+                new Item(2,"Aged Brie", 2, 0, "cheese", 1, AgeingMode.BAD),
+                new Item(3,"Elixir of the Mongoose", 5, 7,"elixir",1, AgeingMode.BAD),
         };
 
         processQualityForDays(items, 20);
 
         assertTrue(items[0].sellIn==-10 && items[0].quality==0);
-        assertTrue(items[1].sellIn==-18 && items[1].quality==38);
+        assertTrue(items[1].sellIn==-18 && items[1].quality==0);
         assertTrue(items[2].sellIn==-15 && items[2].quality==0);
+    }
+
+    @Test // FIXME: it doesnt wor as required
+    public void updateQualityBasicBadModeAgeingDegreeTest(){
+        Item[] items = new Item[] {
+                new Item(1,"+5 Dexterity Vest", 10, 20, "vest", 4, AgeingMode.BAD),
+                new Item(2,"Aged Brie", 2, 0, "cheese", 4, AgeingMode.BAD),
+                new Item(3,"Elixir of the Mongoose", 5, 7,"elixir",4, AgeingMode.BAD),
+        };
+
+        processQualityForDays(items, 20);
+
+        assertTrue(items[0].sellIn==-10 && items[0].quality==0);
+        assertTrue(items[1].sellIn==-18 && items[1].quality==0);
+        assertTrue(items[2].sellIn==-15 && items[2].quality==0);
+    }
+
+    @Test
+    public void updateQualityBasicGoodModeTest(){
+        Item[] items = new Item[] {
+                new Item(1,"+5 Dexterity Vest", 10, 25, "vest", 1, AgeingMode.GOOD),
+                new Item(2,"Aged Brie", 2, 0, "cheese", 1, AgeingMode.GOOD),
+                new Item(3,"Elixir of the Mongoose", 5, 7,"elixir",1, AgeingMode.GOOD),
+        };
+
+        processQualityForDays(items, 20);
+
+        assertThat(items[0].sellIn , Is.is(-10));
+        assertThat(items[0].quality, Is.is(50));
+
+        assertThat(items[1].sellIn , Is.is(-18));
+        assertThat(items[1].quality, Is.is(38));
+
+        assertThat(items[2].sellIn , Is.is(-15));
+        assertThat(items[2].quality, Is.is(42));
+    }
+
+    @Test  // FIXME: it doesnt wor as required
+    public void updateQualityBasicGoodModeAgeingDegreeTest(){
+        Item[] items = new Item[] {
+                new Item(1,"+5 Dexterity Vest", 10, 25, "vest", 4, AgeingMode.GOOD),
+                new Item(2,"Aged Brie", 2, 0, "cheese", 4, AgeingMode.GOOD),
+                new Item(3,"Elixir of the Mongoose", 5, 7,"elixir",4, AgeingMode.GOOD),
+        };
+
+        processQualityForDays(items, 20);
+
+        assertThat(items[0].sellIn , Is.is(-10));
+        assertThat(items[0].quality, Is.is(50));
+
+        assertThat(items[1].sellIn , Is.is(-18));
+        assertThat(items[1].quality, Is.is(38));
+
+        assertThat(items[2].sellIn , Is.is(-15));
+        assertThat(items[2].quality, Is.is(42));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void updateQualityBasicAgeingDegreeNegativeTest(){
+        Item[] items = new Item[] {
+                new Item(1,"+5 Dexterity Vest", 10, 20, "vest", -2, AgeingMode.BAD),
+                new Item(2,"Aged Brie", 2, 0, "cheese", -2, AgeingMode.BAD),
+                new Item(3,"Elixir of the Mongoose", 5, 7,"elixir",-2, AgeingMode.BAD),
+        };
+
+        processQualityForDays(items, 20);
     }
 
     // FIXME: it does not work as required

@@ -22,13 +22,13 @@ public class Item {
         this(id, name, sellIn, quality, type, 1.0f, AgeingMode.BAD);
     }
 
-    public Item(long id, String name, int sellIn, int quality, String type, float agingDegree, AgeingMode ageingMode) {
+    public Item(long id, String name, int sellIn, int quality, String type, float ageingDegree, AgeingMode ageingMode) {
         this.id = id;
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
         this.type = type != null ? type.toUpperCase() : null;
-        this.ageingDegree = agingDegree;
+        this.ageingDegree = ageingDegree;
         this.ageingMode = ageingMode;
 
     }
