@@ -13,6 +13,7 @@ function loadItems(){
                     { data: "id", visible: false },
                     { data: "name", title: "Name" },
                     { data: "sellIn", title: "Sell In"  },
+                    { data: "type", title: "Type"  },
                     { data: "quality", title: "Quality"  },
                     { data: "tag", title: "Tags", "defaultContent": ""  },
                     { // Actions column
@@ -31,9 +32,8 @@ function loadItems(){
                     var row = table.row( tr );
                     console.debug("Updating data:", row.data());
                     var itemId = row.data().id;
-                    // TODO: call ms to degrade the selected item id
-                    // TODO: if success update dataTable data values for quality/sellIn
-                    degradeItem(itemId, table);
+
+                    degradeItem(itemId, row);
                 } );
         } catch (e) {
             console.error(e);
@@ -45,7 +45,7 @@ function loadItems(){
     });
 }
 
-function degradeItem(id, table){
+function degradeItem(id, row){
     var request = $.ajax({
         url: "/items/degrade/"+id,
         method: "PATCH",
@@ -53,13 +53,30 @@ function degradeItem(id, table){
     });
 
     request.done(function( response ) {
-        alert("Item " + id + " has been updated. update page to see changes");
-
-        // TODO: use the response to reload data of this row
+        console.log("Item " + id + " has been updated. update page to see changes");
+        // if success update dataTable data values with item's data
+        updateItem(id, row);
     });
 
     request.fail(function( jqXHR, textStatus ) {
         alert( "Could not update item with id " + id + ". Error:" + textStatus);
+    });
+}
+
+function updateItem(id, row){
+    var request = $.ajax({
+        url: "/items/"+id,
+        method: "GET",
+        dataType: "json",
+    });
+
+    request.done(function( data ) {
+        console.debug("Updating data: ",row.data(),"  with:", data[0]);
+        row.data(data[0]);
+    });
+
+    request.fail(function( jqXHR, textStatus ) {
+        console.log( "Could not update item with id " + id + ". Error:" + textStatus);
     });
 }
 
