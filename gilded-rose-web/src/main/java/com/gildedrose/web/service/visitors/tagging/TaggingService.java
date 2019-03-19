@@ -27,9 +27,7 @@ public class TaggingService {
         Function qualityTagHQ = QualityTagFunction.getInstance(QualityTagFunction.QUALITY_TAG.HQ, groupBy,
                 Comparator.<ItemDTO>comparingInt(o -> o.quality).reversed());
         Function qualityTagLQ = QualityTagFunction.getInstance(QualityTagFunction.QUALITY_TAG.LQ, groupBy,
-                Comparator.comparingInt(o -> o.quality)).compose(o ->
-                ((List<ItemDTO>)o).stream().filter(itemDTO -> !itemDTO.tags.contains("HQ")).collect(Collectors.toList())
-        );
+                Comparator.comparingInt(o -> o.quality));
 
         // add sellIn tag if the value is < 10 (filter then tag)
         Function qualityTagSellIn = QualityTagFunction.getInstance(QualityTagFunction.QUALITY_TAG.SELLIN, groupBy,
@@ -38,7 +36,9 @@ public class TaggingService {
                 );
 
         // chain functions HQ & LQ
-        Function qualityTagVisitorHQLQ = qualityTagHQ.andThen(qualityTagLQ);
+        Function qualityTagVisitorHQLQ = qualityTagHQ.andThen(qualityTagLQ.compose(o ->
+                ((List<ItemDTO>)o).stream().filter(itemDTO -> !itemDTO.tags.contains("HQ")).collect(Collectors.toList())
+        ));
 
         // run tag executor
         TagProcessor.with(withItems, qualityTagVisitorHQLQ, qualityTagSellIn);
