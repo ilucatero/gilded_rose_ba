@@ -44,10 +44,10 @@ public class QualityTagFunction<V extends Taggable, T extends Collection<V>, R e
     public R apply(T t) {
         if(this.collector != null) {
             t.stream().collect(collector).forEach( (s, objects) ->
-                    objects.stream().sorted(c1).findFirst().get().getTagList().add(TAG.name())
+                    objects.stream().min(c1).get().getTagList().add(TAG.name())
             );
         } else {
-            t.stream().sorted(c1).findFirst().get().getTagList().add(TAG.name());
+            t.stream().min(c1).get().getTagList().add(TAG.name());
         }
         return (R)t;
     }
