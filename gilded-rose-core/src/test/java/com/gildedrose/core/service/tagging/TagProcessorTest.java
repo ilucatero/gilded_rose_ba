@@ -4,12 +4,14 @@ import org.hamcrest.core.Is;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 
@@ -21,17 +23,26 @@ public class TagProcessorTest {
     @Before
     public final void setUp() throws Exception {
         itemsToTag = Arrays.asList(
-                new ItemTest(1, "item1", 4),
-                new ItemTest(2, "item2",8),
-                new ItemTest(3, "item3",1)
+                new ItemTest(1, "itemA_1", "type1", 4),
+                new ItemTest(1, "itemA_2","type1",8),
+                new ItemTest(1, "itemA_4","type1",1),
+                new ItemTest(1, "itemA_5","type1",1),
+
+                new ItemTest(1, "itemB_1", "type2", 4),
+                new ItemTest(1, "itemB_2","type2",8),
+                new ItemTest(1, "itemB_3","type2",1),
+                new ItemTest(1, "itemB_4","type2",1)
         );
     }
 
     @Test
     public final void testHighQualityTagging(){
+
+        Collector<ItemTest, ?, Map<String, List<ItemTest>>> groupBy = Collectors.groupingBy(o -> o.type);
+
         TagProcessor.with(itemsToTag,
-                QualityTagVisitor.getInstance(QualityTagVisitor.QUALITY_TAG.LQ, Comparator.comparingInt(o -> ((ItemTest) o).quality)),
-                QualityTagVisitor.getInstance(QualityTagVisitor.QUALITY_TAG.HQ, Comparator.comparingInt(o -> ((ItemTest) o).quality).reversed())
+                QualityTagFunction.getInstance(QualityTagFunction.QUALITY_TAG.LQ, groupBy, Comparator.comparingInt(o -> o.quality)),
+                QualityTagFunction.getInstance(QualityTagFunction.QUALITY_TAG.HQ, groupBy, Comparator.<ItemTest>comparingInt(o -> o.quality).reversed())
         );
 
         // check item list is not emptied

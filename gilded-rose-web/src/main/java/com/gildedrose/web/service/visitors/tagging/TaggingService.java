@@ -1,27 +1,41 @@
 package com.gildedrose.web.service.visitors.tagging;
 
-import com.gildedrose.core.service.tagging.QualityTagVisitor;
+import com.gildedrose.core.service.tagging.QualityTagFunction;
 import com.gildedrose.core.service.tagging.TagProcessor;
 import com.gildedrose.web.dto.ItemDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Service
 public class TaggingService {
 
     /**
-     * Assign the tags depending on different criteria ( {@link QualityTagVisitor},.. )
+     * Assign the tags depending on different criteria ( {@link QualityTagFunction},.. )
      * @param withItems the list of items to tag.
      */
     public  void tagItems(List<ItemDTO> withItems){
-        TagProcessor.with(withItems,
-                QualityTagVisitor.getInstance(QualityTagVisitor.QUALITY_TAG.LQ, Comparator.comparingInt(o -> ((ItemDTO) o).quality))
-                        .andThen(QualityTagVisitor.getInstance(QualityTagVisitor.QUALITY_TAG.LQ,
-                                Comparator.comparingInt(o -> ((ItemDTO) o).quality).reversed())
-                        ),
-                QualityTagVisitor.getInstance(QualityTagVisitor.QUALITY_TAG.SELLIN, Comparator.comparingInt(o -> ((ItemDTO) o).sellIn))
-        );
+        Collector<ItemDTO, ?, Map<String, List<ItemDTO>>> groupBy = Collectors.groupingBy(o -> o.type);
+
+        // create functions for each tag to apply
+        Function qualityTagLQ = QualityTagFunction.getInstance(QualityTagFunction.QUALITY_TAG.LQ, groupBy,
+                Comparator.comparingInt(o -> o.quality));
+        Function qualityTagHQ = QualityTagFunction.getInstance(QualityTagFunction.QUALITY_TAG.HQ, groupBy,
+                Comparator.<ItemDTO>comparingInt(o -> o.quality).reversed());
+
+        Function qualityTagSellIn = QualityTagFunction.getInstance(QualityTagFunction.QUALITY_TAG.SELLIN, groupBy,
+                Comparator.comparingInt(o -> o.sellIn));
+
+        // chain functions HQ & LQ
+        Function qualityTagVisitorHQLQ = qualityTagHQ.andThen(qualityTagLQ);
+
+        // run tag executor
+        TagProcessor.with(withItems, qualityTagVisitorHQLQ, qualityTagSellIn);
+
     }
 }

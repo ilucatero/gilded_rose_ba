@@ -17,6 +17,7 @@ public class TagProcessor {
      */
     public static <V extends Taggable, T extends Collection<V>, R> void with(T withItems, @NotNull @NotEmpty Function<T, R>... tagVisitors){
         for (Function<T,R> tagVisitor : tagVisitors) {
+            // TODO : apply parallelization
             tagVisitor.apply(withItems);
         }
     }
