@@ -5,7 +5,6 @@ import com.gildedrose.core.service.tagging.TagProcessor;
 import com.gildedrose.web.dto.ItemDTO;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
