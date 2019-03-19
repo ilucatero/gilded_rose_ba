@@ -9,8 +9,9 @@
          http://www.springframework.org/schema/util      http://www.springframework.org/schema/util/spring-util.xsd
        ">
 
-    <import resource="/spring-bean-core-conf.xml"/>
+    <import resource="spring-bean-core-conf.xml"/>
 
     <bean id="ItemAdapter" class="com.gildedrose.web.adapter.ItemAdapter" init-method="initIt" />
+    <bean id="TaggingService" class="com.gildedrose.web.service.visitors.tagging.TaggingService" />
 
 </beans>

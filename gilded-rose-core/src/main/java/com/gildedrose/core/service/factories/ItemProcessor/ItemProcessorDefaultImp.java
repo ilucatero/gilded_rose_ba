@@ -1,4 +1,4 @@
-package com.gildedrose.core.service.factories;
+package com.gildedrose.core.service.factories.ItemProcessor;
 
 
 /**

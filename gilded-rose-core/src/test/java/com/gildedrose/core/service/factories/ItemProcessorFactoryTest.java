@@ -1,5 +1,9 @@
 package com.gildedrose.core.service.factories;
 
+import com.gildedrose.core.service.factories.ItemProcessor.ItemProcessor;
+import com.gildedrose.core.service.factories.ItemProcessor.ItemProcessorCheeseImp;
+import com.gildedrose.core.service.factories.ItemProcessor.ItemProcessorDefaultImp;
+import com.gildedrose.core.service.factories.ItemProcessor.ItemProcessorFactory;
 import org.junit.Before;
 import org.junit.Test;
 

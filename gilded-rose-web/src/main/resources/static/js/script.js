@@ -15,7 +15,7 @@ function loadItems(){
                     { data: "sellIn", title: "Sell In"  },
                     { data: "type", title: "Type"  },
                     { data: "quality", title: "Quality"  },
-                    { data: "tag", title: "Tags", "defaultContent": ""  },
+                    { data: "tags", title: "Tags", "defaultContent": ""  },
                     { // Actions column
                         "className":      'item-actions',
                         "orderable":      false,

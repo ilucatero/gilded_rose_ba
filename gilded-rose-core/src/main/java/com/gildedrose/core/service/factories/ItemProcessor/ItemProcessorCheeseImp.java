@@ -1,8 +1,7 @@
-package com.gildedrose.core.service.factories;
+package com.gildedrose.core.service.factories.ItemProcessor;
 
 
 import com.gildedrose.core.model.Item;
-import com.gildedrose.core.model.type.AgeingMode;
 
 /**
  * Provides base functionality for the ItemProcessor

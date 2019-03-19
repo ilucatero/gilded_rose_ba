@@ -1,4 +1,4 @@
-package com.gildedrose.core.service.factories;
+package com.gildedrose.core.service.factories.ItemProcessor;
 
 import java.util.HashMap;
 import java.util.Map;

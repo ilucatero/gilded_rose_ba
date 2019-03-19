@@ -4,6 +4,7 @@ import com.gildedrose.core.model.Item;
 import com.gildedrose.core.service.ItemService;
 import com.gildedrose.web.adapter.ItemAdapter;
 import com.gildedrose.web.dto.ItemDTO;
+import com.gildedrose.web.service.visitors.tagging.TaggingService;
 import org.assertj.core.util.Lists;
 import org.hamcrest.Matchers;
 import org.junit.Ignore;
@@ -43,6 +44,8 @@ public class ItemControllerRestTest {
     private ItemService itemService;
     @MockBean
     protected ItemAdapter itemAdapter;
+    @MockBean
+    protected TaggingService taggingService;
 
     private final String ITEMS_REST_MAPPING = "/items";
 

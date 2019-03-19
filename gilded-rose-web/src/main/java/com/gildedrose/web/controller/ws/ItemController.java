@@ -2,23 +2,14 @@ package com.gildedrose.web.controller.ws;
 
 import com.gildedrose.core.model.Item;
 import com.gildedrose.core.service.ItemService;
+import com.gildedrose.web.service.visitors.tagging.TaggingService;
 import com.gildedrose.web.adapter.ItemAdapter;
 import com.gildedrose.web.dto.ItemDTO;
-import org.modelmapper.ModelMapper;
-import org.modelmapper.config.Configuration;
-import org.modelmapper.convention.NamingConventions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,6 +23,9 @@ public class ItemController {
     @Autowired
     protected ItemAdapter itemAdapter;
 
+    @Autowired
+    protected TaggingService taggingService;
+
     @RequestMapping(value={"/get-items"}, method = RequestMethod.GET)
     public List<ItemDTO> getAll(){
 
@@ -40,7 +34,7 @@ public class ItemController {
 
         List<ItemDTO> dtoItems = items.stream().map(item -> itemAdapter.toDto(item)).collect(Collectors.toList());
 
-        // TODO: add tags to respective itemDtos (as for now, tag only the Highest Quality item per type)
+        taggingService.tagItems(dtoItems);
 
         return dtoItems ;
     }

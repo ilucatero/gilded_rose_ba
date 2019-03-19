@@ -64,7 +64,7 @@ public class ItemAdapterTest {
             assertEquals(itemExpectedValues.sellIn, itemDto.sellIn);
             assertEquals(itemExpectedValues.quality, itemDto.quality);
 
-            assertNull(itemDto.tags);
+            assertNotNull(itemDto.tags);
         }
     }
 
@@ -88,7 +88,7 @@ public class ItemAdapterTest {
             assertEquals(itemExpectedValues.sellIn, itemDto.sellIn);
             assertEquals(itemExpectedValues.quality, itemDto.quality);
 
-            assertNull(itemDto.tags);
+            assertNotNull(itemDto.tags);
         }
 
         ItemDTO itemDto = itemAdapter.toDto(null);

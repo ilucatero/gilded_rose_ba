@@ -1,7 +1,7 @@
 package com.gildedrose.core.service;
 
 import com.gildedrose.core.model.Item;
-import com.gildedrose.core.service.factories.ItemProcessorFactory;
+import com.gildedrose.core.service.factories.ItemProcessor.ItemProcessorFactory;
 
 import java.util.List;
 
