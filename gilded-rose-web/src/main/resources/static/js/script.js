@@ -72,6 +72,7 @@ function updateItem(id, row){
 
     request.done(function( data ) {
         console.debug("Updating data: ",row.data(),"  with:", data[0]);
+        data[0].tags = row.data().tags;
         row.data(data[0]);
     });
 
