@@ -1,11 +1,9 @@
 package com.gildedrose.web.dto;
 
-import com.gildedrose.core.service.tagging.Taggable;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemDTO implements Taggable {
+public class ItemDTO  {
 
     public long id;
     public String name;
@@ -27,8 +25,4 @@ public class ItemDTO implements Taggable {
         this.tags = new ArrayList<>(0);
     }
 
-    @Override
-    public List<String> getTagList() {
-        return tags;
-    }
 }

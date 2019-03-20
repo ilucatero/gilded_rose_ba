@@ -1,14 +1,11 @@
 package com.gildedrose.web.service.visitors.tagging;
 
-import com.gildedrose.core.service.tagging.QualityTagFunction;
-import com.gildedrose.core.service.tagging.TagProcessor;
 import com.gildedrose.web.dto.ItemDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -16,32 +13,35 @@ import java.util.stream.Collectors;
 public class TaggingService {
 
     /**
-     * Assign the tags depending on different criteria ( {@link QualityTagFunction},.. )
+     * Assign the tags depending on different criteria
      * @param withItems the list of items to tag.
      */
     public  void tagItems(List<ItemDTO> withItems){
         // group by item type resulting in a map of items by type
         Collector<ItemDTO, ?, Map<String, List<ItemDTO>>> groupBy = Collectors.groupingBy(o -> o.type);
 
-        // create functions for each tag to apply
-        Function qualityTagHQ = QualityTagFunction.getInstance(QualityTagFunction.QUALITY_TAG.HQ, groupBy,
-                Comparator.<ItemDTO>comparingInt(o -> o.quality).reversed());
-        Function qualityTagLQ = QualityTagFunction.getInstance(QualityTagFunction.QUALITY_TAG.LQ, groupBy,
-                Comparator.comparingInt(o -> o.quality));
-
-        // add sellIn tag if the value is < 10 (filter then tag)
-        Function qualityTagSellIn = QualityTagFunction.getInstance(QualityTagFunction.QUALITY_TAG.SELLIN, groupBy,
-                Comparator.comparingInt(o -> o.sellIn)).compose(o ->
-                    ((List<ItemDTO>)o).stream().filter(itemDTO -> itemDTO.sellIn<10).collect(Collectors.toList())
+        withItems.stream()
+                .collect(groupBy)
+                .forEach( (s, objects) -> {
+                            if (objects.size() > 1) {
+                                // is Highest Quality if quality and sell in is > 5
+                                objects.stream().filter(itemDTO -> (itemDTO.quality > 5 && itemDTO.sellIn >5))
+                                        .min(Comparator.<ItemDTO>comparingInt(o -> o.quality).reversed())
+                                        .ifPresent(itemDTO -> itemDTO.tags.add("HQ"));
+                                // is Lowest Quality if quality < 5  (only one item in list)
+                                objects.stream().filter(itemDTO -> (!itemDTO.tags.contains("HQ") && itemDTO.quality < 5) )
+                                        .min(Comparator.comparingInt(o -> o.quality))
+                                        .ifPresent(itemDTO ->  itemDTO.tags.add("LQ") );
+                            } else{
+                                // is Lowest Quality if quality < 5 (only one item in list)
+                                objects.stream().filter(itemDTO -> (itemDTO.quality < 5) )
+                                        .findAny().ifPresent(itemDTO ->  itemDTO.tags.add("LQ") );
+                            }
+                            // is Sell In if sell in value < 5 (near to perish)
+                            objects.stream().filter(itemDTO -> itemDTO.sellIn <= 5)
+                                .forEach(itemDTO -> itemDTO.tags.add("SELL IN") );
+                        }
                 );
-
-        // chain functions HQ & LQ
-        Function qualityTagVisitorHQLQ = qualityTagHQ.andThen(qualityTagLQ.compose(o ->
-                ((List<ItemDTO>)o).stream().filter(itemDTO -> !itemDTO.tags.contains("HQ")).collect(Collectors.toList())
-        ));
-
-        // run tag executor
-        TagProcessor.with(withItems, qualityTagVisitorHQLQ, qualityTagSellIn);
 
     }
 }
