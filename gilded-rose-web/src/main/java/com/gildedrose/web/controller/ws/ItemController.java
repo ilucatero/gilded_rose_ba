@@ -54,7 +54,6 @@ public class ItemController {
 
     @RequestMapping(value={"/degrade/{itemId}"}, method = RequestMethod.PATCH)
     public Boolean degrade(@PathVariable Long itemId){
-        // TODO: determine if returning the actual updated item is necessary on frontend
         return itemService.degrade(itemId);
     }
 }
