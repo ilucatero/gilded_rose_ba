@@ -17,7 +17,7 @@ public class ItemProcessorFactory{
         processorMap = new HashMap<>();
 
         // TODO: initialize a map with all required ItemProcessors
-        processorMap.put("CHEESE", new ItemProcessorCheeseImp());
+        processorMap.put("SULFURAS", new ItemProcessorSulfurasImp());
     }
 
     /**

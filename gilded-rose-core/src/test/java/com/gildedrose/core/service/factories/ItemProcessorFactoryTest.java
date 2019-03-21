@@ -1,7 +1,7 @@
 package com.gildedrose.core.service.factories;
 
 import com.gildedrose.core.service.factories.ItemProcessor.ItemProcessor;
-import com.gildedrose.core.service.factories.ItemProcessor.ItemProcessorCheeseImp;
+import com.gildedrose.core.service.factories.ItemProcessor.ItemProcessorSulfurasImp;
 import com.gildedrose.core.service.factories.ItemProcessor.ItemProcessorDefaultImp;
 import com.gildedrose.core.service.factories.ItemProcessor.ItemProcessorFactory;
 import org.junit.Before;
@@ -37,9 +37,9 @@ public class ItemProcessorFactoryTest {
 
     @Test
     public void itemProcessorForGivenTypeTest(){
-        ItemProcessor itemProcessor = itemProcessorFactory.getItemProcessor("CheEsE");
+        ItemProcessor itemProcessor = itemProcessorFactory.getItemProcessor("SulFuras");
         assertNotNull(itemProcessor);
         // should get the default
-        assertTrue(itemProcessor.getClass().equals(ItemProcessorCheeseImp.class));
+        assertTrue(itemProcessor.getClass().equals(ItemProcessorSulfurasImp.class));
     }
 }

@@ -26,7 +26,14 @@ public class ItemDao implements Dao<Item> {
             new Item(6,"Backstage passes to a TAFKAL80ETC concert", 15, 20, "concert pass"),
             new Item(7,"Backstage passes to a TAFKAL80ETC concert", 10, 49, "concert pass"),
             new Item(8,"Backstage passes to a TAFKAL80ETC concert", 5, 49, "concert pass"),
-            new Item(9,"Conjured Mana Cake", 3, 6, "conjured")
+            new Item(9,"Conjured Mana Cake", 3, 6, "conjured"),
+            new Item(10,"Cooking Book", 6, 8, "Cooking Book"),
+            new Item(11,"Cooking Book", 6, 8, "Cooking Book"),
+            new Item(12,"Jazz Book", 20, 10, "Music Book"),
+            new Item(13,"Jazz Book", 20, 10, "Music Book"),
+            new Item(14,"Blues Book", 20, 9, "Music Book"),
+            new Item(15,"Blues Book", 20, 9, "Music Book"),
+            new Item(16,"Blues Book", 20, 8, "Music Book")
     );
 
     @Override

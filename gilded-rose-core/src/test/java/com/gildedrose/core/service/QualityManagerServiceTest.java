@@ -138,8 +138,8 @@ public class QualityManagerServiceTest {
 
         processQualityForDays(items, 20);
 
-        assertTrue(items[0].sellIn==-20 && items[0].quality==40);
-        assertTrue(items[1].sellIn==-21 && items[1].quality==40);
+        assertTrue(items[0].sellIn==-0 && items[0].quality==80);
+        assertTrue(items[1].sellIn==-1 && items[1].quality==80);
     }
 
     // FIXME: it does not work as required
