@@ -83,11 +83,10 @@ public class ItemControllerRestTest {
     }
 
     @Test
-    @Ignore // FIXME: modify functionality to make it work
     public void return404WhenSendingRequestToDegradeItemThatDoesntExist() throws Exception {
         int expectedCode = 404;
         // given
-        BDDMockito.given(itemService.degrade(ArgumentMatchers.anyLong())).willReturn(false);
+        BDDMockito.given(itemService.degrade(ArgumentMatchers.anyLong())).willThrow(new IllegalArgumentException());
 
         // when it doesn't exist
         mvc.perform(MockMvcRequestBuilders.patch(ITEMS_REST_MAPPING + "/degrade/"+Long.MAX_VALUE)

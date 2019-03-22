@@ -5,6 +5,7 @@ import com.gildedrose.core.service.ItemService;
 import com.gildedrose.web.service.visitors.tagging.TaggingService;
 import com.gildedrose.web.adapter.ItemAdapter;
 import com.gildedrose.web.dto.ItemDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @RestController
 @RequestMapping("/items")
 public class ItemController {
@@ -53,7 +55,13 @@ public class ItemController {
     }
 
     @RequestMapping(value={"/degrade/{itemId}"}, method = RequestMethod.PATCH)
-    public Boolean degrade(@PathVariable Long itemId){
-        return itemService.degrade(itemId);
+    public ResponseEntity<Boolean >degrade(@PathVariable Long itemId){
+        try {
+            boolean degrade = itemService.degrade(itemId);
+            return ResponseEntity.ok(degrade);
+        }catch (IllegalArgumentException e){
+            log.info("The id {} to degrade was not found", itemId);
+        }
+        return ResponseEntity.notFound().build();
     }
 }

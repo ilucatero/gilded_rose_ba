@@ -72,7 +72,7 @@ public class ItemControllerObjectTest {
 
     @Test
     public void degradeItemSuccessTest(){
-        Boolean isUpdated = itemController.degrade(9L);
+        Boolean isUpdated = itemController.degrade(9L).getBody();
 
         assertNotNull(isUpdated );
         assertTrue(isUpdated );
@@ -81,17 +81,17 @@ public class ItemControllerObjectTest {
     @Test
     public void degradeItemFailTest(){
 
-        Boolean isUpdated = itemController.degrade(null);
+        Boolean isUpdated = itemController.degrade(null).getBody();
         assertNotNull(isUpdated );
         assertTrue(isUpdated ); // since mocked service returns always true
 
         // test with id < 0
-        isUpdated = itemController.degrade(-1L);
+        isUpdated = itemController.degrade(-1L).getBody();
         assertNotNull(isUpdated );
         assertTrue(isUpdated ); // since mocked service returns always true
 
         // test with non existing id
-        isUpdated = itemController.degrade(Long.MAX_VALUE);
+        isUpdated = itemController.degrade(Long.MAX_VALUE).getBody();
         assertNotNull(isUpdated );
         assertTrue(isUpdated ); // since mocked service returns always true
     }

@@ -27,7 +27,7 @@ public class ItemService {
         return itemDao.find(ids);
     }
 
-    public boolean degrade(Long id){
+    public boolean degrade(Long id) throws IllegalArgumentException{
         // TODO: add the required functionality
         log.info("Degrading id:{}",id);
         Optional<Item> opItem = itemDao.get(id);
@@ -37,6 +37,6 @@ public class ItemService {
             return itemDao.update(item, new String[]{"quality"});
         }
 
-        return false;
+        throw new IllegalArgumentException("The passed value doesnt exist.");
     }
 }
