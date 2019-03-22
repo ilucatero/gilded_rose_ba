@@ -11,5 +11,20 @@
 
     <artifactId>gilded-rose-core</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>${hsqldb.version}</version>
+            <!--<scope>test</scope>-->
+            <scope>runtime</scope>
+        </dependency>
+
+    </dependencies>
 
 </project>
