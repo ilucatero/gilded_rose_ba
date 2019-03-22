@@ -1,5 +1,7 @@
 package com.gildedrose.core.service.factories.ItemProcessor;
 
+import lombok.Synchronized;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,16 +11,13 @@ import java.util.Map;
 public class ItemProcessorFactory{
     private static ItemProcessorFactory instance;
 
-    final ItemProcessor  defaultItemProcessor;
-    final private Map<String, ItemProcessor> processorMap;
+    private final static ItemProcessor DEFAULT_ITEM_PROCESSOR = new ItemProcessorDefaultImp();
+    private final Map<String, ItemProcessor> PROCESSOR_MAP = new HashMap<>();
 
     private ItemProcessorFactory(){
-        defaultItemProcessor = new ItemProcessorDefaultImp();
-        processorMap = new HashMap<>();
-
         // TODO: initialize a map with all required ItemProcessors
-        processorMap.put("SULFURAS", new ItemProcessorSulfurasImp());
-        processorMap.put("CONCERT PASS", new ItemProcessorConcertPassImp());
+        PROCESSOR_MAP.put("SULFURAS", new ItemProcessorSulfurasImp());
+        PROCESSOR_MAP.put("CONCERT PASS", new ItemProcessorConcertPassImp());
     }
 
     /**
@@ -27,8 +26,11 @@ public class ItemProcessorFactory{
      */
     public static ItemProcessorFactory getInstance() {
         if(instance == null) {
-            // TODO double check for singleton with synchronize
-            instance = new ItemProcessorFactory();
+            synchronized(ItemProcessorFactory.class) {
+                if(instance == null) {
+                    instance = new ItemProcessorFactory();
+                }
+            }
         }
         return instance;
     }
@@ -43,7 +45,7 @@ public class ItemProcessorFactory{
             return null;
         }
 
-        ItemProcessor itemProcessor = processorMap.getOrDefault(itemType.toUpperCase(), defaultItemProcessor);
+        ItemProcessor itemProcessor = PROCESSOR_MAP.getOrDefault(itemType.toUpperCase(), DEFAULT_ITEM_PROCESSOR);
         return itemProcessor;
     }
 }

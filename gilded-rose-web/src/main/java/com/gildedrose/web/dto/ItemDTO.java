@@ -1,8 +1,11 @@
 package com.gildedrose.web.dto;
 
+import lombok.ToString;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@ToString
 public class ItemDTO  {
 
     public long id;

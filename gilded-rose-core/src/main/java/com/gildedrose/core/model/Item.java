@@ -1,8 +1,11 @@
 package com.gildedrose.core.model;
 
 import com.gildedrose.core.model.type.AgeingMode;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
-
+@Data
 public class Item {
     public long id;
     public String name;
@@ -57,61 +60,4 @@ public class Item {
         this.ageingMode = ageingMode;
     }
 
-
-
-    /** ----------- INHERITED METHODS --------- */
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder()
-                .append("id:").append(this.id)
-                .append(", name:").append(this.name)
-                .append(", sellIn:").append(this.sellIn)
-                .append(", quality:").append(this.quality)
-                .append(", type:").append(this.type)
-                .append(", ageingDegree:").append(this.ageingDegree)
-                .append(", ageingMode:").append(this.ageingMode);
-        return sb.toString();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Item ))
-            return false;
-
-        Item other = (Item ) o;
-        boolean nameEquals = (this.name == null && other.name== null) || (this.name!= null && this.name.equals(other.name));
-        boolean typeEquals = (this.type == null && other.type == null) || (this.type!= null && this.type.equals(other.type));
-        boolean ageingModeEquals = (this.ageingMode == null && other.ageingMode == null)
-                || (this.ageingMode!= null && this.ageingMode.equals(other.ageingMode));
-
-        return (this.id==other.id) && nameEquals && (this.sellIn==other.sellIn) && (this.quality==other.quality)
-                && typeEquals  && (this.ageingDegree==other.ageingDegree) && ageingModeEquals;
-    }
-
-    @Override
-    public final int hashCode() {
-        int result = Long.hashCode(id);
-
-        if (name!= null) {
-            result = 31 * result + name.hashCode();
-        }
-
-        result = 31 * result + Integer.hashCode(sellIn);
-        result = 31 * result + Integer.hashCode(quality);
-
-        if (type!= null) {
-            result = 31 * result + type.hashCode();
-        }
-
-        result = 31 * result + Float.hashCode(ageingDegree);
-
-        if (ageingMode!= null) {
-            result = 31 * result + ageingMode.hashCode();
-        }
-
-
-        return result;
-    }
 }

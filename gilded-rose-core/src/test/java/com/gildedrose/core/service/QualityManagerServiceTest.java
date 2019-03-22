@@ -158,9 +158,9 @@ public class QualityManagerServiceTest {
         assertThat(items[0].quality , Is.is(36));
 
         assertThat(items[1].sellIn , Is.is(0));
-        assertThat(items[1].quality , Is.is(50));
+        assertThat(items[1].quality , Is.is(0));
 
-        assertThat(items[2].sellIn , Is.is(0));
+        assertThat(items[2].sellIn , Is.is(-5));
         assertThat(items[2].quality , Is.is(0));
 
         assertThat(items[3].sellIn , Is.is(15));

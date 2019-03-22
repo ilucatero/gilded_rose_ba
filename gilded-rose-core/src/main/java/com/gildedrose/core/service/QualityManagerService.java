@@ -23,9 +23,7 @@ public class QualityManagerService {
      * @param items
      */
     public void updateQuality(List<Item> items) {
-        for (Item item : items) {
-            updateQuality(item);
-        }
+        items.parallelStream().forEach(item -> updateQuality(item));
     }
 
     /**
