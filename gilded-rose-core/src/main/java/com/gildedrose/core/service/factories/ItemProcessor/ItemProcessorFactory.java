@@ -18,6 +18,7 @@ public class ItemProcessorFactory{
 
         // TODO: initialize a map with all required ItemProcessors
         processorMap.put("SULFURAS", new ItemProcessorSulfurasImp());
+        processorMap.put("CONCERT PASS", new ItemProcessorConcertPassImp());
     }
 
     /**

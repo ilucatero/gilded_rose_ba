@@ -146,27 +146,42 @@ public class QualityManagerServiceTest {
     @Test
     public void updateQualityBackstagePassesTest(){
         Item[] items = new Item[] {
-                new Item(1,"Backstage passes to a TAFKAL80ETC concert", 15, 20, "concert pass"),
-                new Item(2,"Backstage passes to a TAFKAL80ETC concert", 10, 49, "concert pass"),
-                new Item(3,"Backstage passes to a TAFKAL80ETC concert", 5, 49, "concert pass"),
+                new Item(1,"Backstage passes to a TAFKAL80ETC concert", 15, 20, "concert pass", 1, AgeingMode.GOOD),
+                new Item(2,"Backstage passes to a TAFKAL80ETC concert", 10, 49, "concert pass", 1, AgeingMode.GOOD),
+                new Item(3,"Backstage passes to a TAFKAL80ETC concert", 5, 49, "concert pass", 1, AgeingMode.GOOD),
+                new Item(3,"Backstage passes to a TAFKAL80ETC concert", 25, 20, "concert pass", 1, AgeingMode.GOOD),
         };
 
-        processQualityForDays(items, 20);
+        processQualityForDays(items, 10);
 
-        assertTrue(items[0].sellIn==-5 && items[0].quality==0);
-        assertTrue(items[1].sellIn==-10 && items[1].quality==19);
-        assertTrue(items[2].sellIn==-15 && items[2].quality==14);
+        assertThat(items[0].sellIn , Is.is(5));
+        assertThat(items[0].quality , Is.is(36));
+
+        assertThat(items[1].sellIn , Is.is(0));
+        assertThat(items[1].quality , Is.is(50));
+
+        assertThat(items[2].sellIn , Is.is(0));
+        assertThat(items[2].quality , Is.is(0));
+
+        assertThat(items[3].sellIn , Is.is(15));
+        assertThat(items[3].quality , Is.is(30));
+
     }
 
     // FIXME: it does not work as required
     @Test
     public void updateQualityConjuredTest(){
         Item[] items = new Item[] {
-                new Item(1,"Conjured Mana Cake", 3, 6, "conjured"),
+                new Item(1,"Conjured Mana Cake", 3, 6, "conjured", 2, AgeingMode.BAD),
+                new Item(2,"Conjured Mana Cake", 1, 1, "conjured",2, AgeingMode.BAD),
         };
 
-        processQualityForDays(items, 20);
+        processQualityForDays(items, 2);
 
-        assertTrue(items[0].sellIn==-17 && items[0].quality==0);
+        assertThat(items[0].sellIn , Is.is(1));
+        assertThat(items[0].quality , Is.is(2));
+
+        assertThat(items[1].sellIn , Is.is(-1));
+        assertThat(items[1].quality , Is.is(0));
     }
 }

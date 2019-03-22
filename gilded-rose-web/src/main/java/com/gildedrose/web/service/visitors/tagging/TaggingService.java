@@ -27,7 +27,7 @@ public class TaggingService {
                 .collect(groupByType)
                 .forEach( (s, objects) -> {
                         if (!taggableTypes.contains(s.toUpperCase())) {
-                            objects.stream().collect(groupByName).forEach((s1, itemDTOS) -> {
+                            objects.parallelStream().collect(groupByName).forEach((s1, itemDTOS) -> {
                                 if (itemDTOS.size() > 1) {
                                         // is Highest Quality if quality and sell in is > 5
                                         itemDTOS.stream().filter(itemDTO -> (itemDTO.quality > 5 && itemDTO.sellIn > 5))
