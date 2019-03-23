@@ -5,9 +5,7 @@
          http://www.springframework.org/schema/beans     http://www.springframework.org/schema/beans/spring-beans.xsd
        ">
 
-    <bean id="ItemDao" class="com.gildedrose.core.dao.ItemDao" />
-
-    <bean id="ItemService" class="com.gildedrose.core.service.ItemService" />
-    <bean id="QualityManagerService" class="com.gildedrose.core.service.QualityManagerService" />
+    <import resource="spring-bean-core-conf-database.xml" />
+    <import resource="spring-bean-core-conf-services.xml" />
 
 </beans>

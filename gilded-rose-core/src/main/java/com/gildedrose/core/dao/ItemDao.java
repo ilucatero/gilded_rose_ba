@@ -3,95 +3,104 @@ package com.gildedrose.core.dao;
 import com.gildedrose.core.model.Item;
 import com.gildedrose.core.model.type.AgeingMode;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.swing.text.html.Option;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-/* TODO: At the moment the db only a basic list of items stored on memory, so when restart the values are lost.
-   TODO: So, here the real implementation of this DAO will be required
-*/
-@Component("ItemDao")
-public class ItemDao implements Dao<Item> {
+@Repository
+@Transactional
+public class ItemDao extends AbstractJpaDAO<Item>{
 
-    // TODO: this only represent the real db, should ONLY be use for tests and be removed later on
-    private static List<Item> items = Arrays.asList(
-            new Item(1,"+5 Dexterity Vest", 10, 20, "vest"),
-            new Item(2,"Aged Brie", 2, 0, "cheese", 1, AgeingMode.GOOD),
-            new Item(3,"Elixir of the Mongoose", 5, 7, "normal power drink"),
-            new Item(4,"Sulfuras, Hand of Ragnaros", 0, 80, "sulfuras"),
-            new Item(5,"Sulfuras, Hand of Ragnaros", -1, 80, "sulfuras"),
-            new Item(6,"Backstage passes to a TAFKAL80ETC concert", 15, 20, "concert pass",1, AgeingMode.GOOD),
-            new Item(7,"Backstage passes to a TAFKAL80ETC concert", 10, 49, "concert pass",1, AgeingMode.GOOD),
-            new Item(8,"Backstage passes to a TAFKAL80ETC concert", 5, 49, "concert pass",1, AgeingMode.GOOD),
-            new Item(9,"Conjured Mana Cake", 3, 6, "conjured",2, AgeingMode.BAD),
-            new Item(10,"Cooking Book", 6, 8, "Cooking Book"),
-            new Item(11,"Cooking Book", 6, 8, "Cooking Book"),
-            new Item(12,"Jazz Book", 20, 10, "Music Book"),
-            new Item(13,"Jazz Book", 20, 10, "Music Book"),
-            new Item(14,"Blues Book", 20, 9, "Music Book"),
-            new Item(15,"Blues Book", 20, 9, "Music Book"),
-            new Item(16,"Blues Book", 20, 8, "Music Book")
-    );
+    public ItemDao(){
+        setClazz(Item.class);
+    }
 
-    @Override
     public List<Item> find(List<Long> ids) {
-        // TODO: implement functionality as required
-        return items.stream()
-                .filter(item -> (ids.contains(item.id)))
-                .collect(Collectors.toList());
+        return findSome(ids);
     }
 
-    @Override
     public Optional<Item> get(Long id) {
-        // TODO: implement functionality as required
-        return items.stream()
-                .filter(item -> (id == item.id))
-                .findAny();
+        return Optional.of(findOne(id));
     }
 
-    @Override
     public List<Item> getAll() {
-        // TODO: implement functionality as required
-        return items;
+        return findAll();
     }
 
-    @Override
-    public void save(Item item) {
-        // TODO: implement functionality as required
-        items.add(item);
-    }
-
-    @Override
-    public boolean update(Item item, String[] params) {
+    public Item update(Item item, String[] params) {
         // TODO: implement functionality as required
 
         // TODO: once the db resource is implemented remove below code and do the actual db update
         Optional<Item> itemOptional = get(item.id);
-        if (!itemOptional.isPresent()) {
+        if (itemOptional.isPresent()) {
+            Item updateItem = itemOptional.get();
             for (String param : params) {
                 switch (param) {
                     case "name":
-                        itemOptional.get().name = item.name;
-                        return true;
+                        updateItem.name = item.name;
+                        break;
                     case "sellIn":
-                        itemOptional.get().sellIn = item.sellIn;
-                        return true;
+                        updateItem .sellIn = item.sellIn;
+                        break;
                     case "quality":
-                        itemOptional.get().quality = item.quality;
-                        return true;
+                        updateItem .quality = item.quality;
+                        break;
                     default:
                 }
             }
+            return update(updateItem );
         }
+        return null;
+    }
+
+
+    @Override
+    public Item save(Item item) {
+        create(item);
+        return item;
+    }
+
+    @Override
+    public <S extends Item> Iterable<S> saveAll(Iterable<S> iterable) {
+        return null;
+    }
+
+    @Override
+    public Optional<Item> findById(Long aLong) {
+        return Optional.empty();
+    }
+
+    @Override
+    public boolean existsById(Long aLong) {
         return false;
     }
 
     @Override
-    public void delete(Item item) {
-        // TODO: implement functionality as required
-        items.remove(item);
+    public Iterable<Item> findAllById(Iterable<Long> iterable) {
+        return null;
+    }
+
+    @Override
+    public long count() {
+        return 0;
+    }
+
+    @Override
+    public void deleteById(Long aLong) {
+
+    }
+
+    @Override
+    public void deleteAll(Iterable<? extends Item> iterable) {
+
+    }
+
+    @Override
+    public void deleteAll() {
+
     }
 }

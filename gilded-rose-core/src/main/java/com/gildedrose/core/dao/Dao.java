@@ -1,9 +1,11 @@
 package com.gildedrose.core.dao;
 
+import org.springframework.data.repository.CrudRepository;
+
 import java.util.List;
 import java.util.Optional;
 
-public interface Dao<T> {
+public interface Dao<T> extends CrudRepository<T, Long> {
 
     /**
      * Get the items with the giving ids
@@ -26,16 +28,10 @@ public interface Dao<T> {
     List<T> getAll();
 
     /**
-     * Save in the base the giving item
-     * @param t
-     */
-    void save(T t);
-
-    /**
      * Update in the base the giving item
      * @param t
      */
-    boolean update(T t, String[] params);
+    T update(T t, String[] params);
 
     /**
      * Update in the base the giving item

@@ -34,7 +34,7 @@ public class ItemService {
         if (opItem.isPresent() ) {
             Item item = opItem.get();
             qualityManagerService.updateQuality(opItem.get());
-            return itemDao.update(item, new String[]{"quality"});
+            return itemDao.update(item, new String[]{"quality"}) != null; // FIXME
         }
 
         throw new IllegalArgumentException("The passed value doesnt exist.");

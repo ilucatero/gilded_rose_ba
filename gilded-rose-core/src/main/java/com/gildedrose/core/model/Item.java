@@ -2,18 +2,23 @@ package com.gildedrose.core.model;
 
 import com.gildedrose.core.model.type.AgeingMode;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
-public class Item {
+@Entity @Table(name = "tblItems")
+public class Item implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Id @GeneratedValue @Column
     public long id;
-    public String name;
-    public int sellIn;
-    public int quality;
-    public String type;
-    public int ageingDegree;
-    public AgeingMode ageingMode;
+    @Column public String name;
+    @Column public int sellIn;
+    @Column public int quality;
+    @Column public String type;
+    @Column public int ageingDegree;
+    @Column @Enumerated(EnumType.STRING) public AgeingMode ageingMode;
 
     public Item(){}
 
