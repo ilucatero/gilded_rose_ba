@@ -11,7 +11,7 @@ public abstract class HsqldbBaseTestSetup {
 
     @Before
     public void setup() throws SQLException, ClassNotFoundException, IOException {
-        Class.forName("org.hsqldb.jdbc.JDBCDriver");
+//        Class.forName("org.hsqldb.jdbc.JDBCDriver");
 
         // initialize database
         initDatabase();

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="data_items" author="ignacio lucatero">
+        <insert tableName="tblItems">
+            <column name="name">+5 Dexterity Vest</column>
+            <column name="sellIn">10</column>
+            <column name="quality">20</column>
+            <column name="type">vest</column>
+            <column name="ageingDegree">1</column>
+            <column name="ageingMode">BAD</column>
+        </insert>
+        <insert tableName="tblItems">
+            <column name="name">+5 Dexterity Vest</column>
+            <column name="sellIn">10</column>
+            <column name="quality">20</column>
+            <column name="type">vest</column>
+            <column name="ageingDegree">1</column>
+            <column name="ageingMode">BAD</column>
+        </insert>
+        <insert tableName="tblItems">
+            <column name="name">Aged Brie</column>
+            <column name="sellIn">2</column>
+            <column name="quality">0</column>
+            <column name="type">cheese</column>
+            <column name="ageingDegree">1</column>
+            <column name="ageingMode">GOOD</column>
+        </insert>
+        <insert tableName="tblItems">
+            <column name="name">Elixir of the Mongoose</column>
+            <column name="sellIn">5</column>
+            <column name="quality">7</column>
+            <column name="type">normal power drink</column>
+            <column name="ageingDegree">1</column>
+            <column name="ageingMode">BAD</column>
+        </insert>
+        <insert tableName="tblItems">
+            <column name="name">Sulfuras Hand of Ragnaros</column>
+            <column name="sellIn">0</column>
+            <column name="quality">80</column>
+            <column name="type">sulfuras</column>
+            <column name="ageingDegree">1</column>
+            <column name="ageingMode">BAD</column>
+        </insert>
+        <insert tableName="tblItems">
+            <column name="name">Sulfuras Hand of Ragnaros</column>
+            <column name="sellIn">-1</column>
+            <column name="quality">80</column>
+            <column name="type">sulfuras</column>
+            <column name="ageingDegree">1</column>
+            <column name="ageingMode">BAD</column>
+        </insert>
+        <insert tableName="tblItems">
+            <column name="name">Backstage passes to a TAFKAL80ETC concert</column>
+            <column name="sellIn">15</column>
+            <column name="quality">20</column>
+            <column name="type">concert pass</column>
+            <column name="ageingDegree">1</column>
+            <column name="ageingMode">GOOD</column>
+        </insert>
+        <insert tableName="tblItems">
+            <column name="name">Backstage passes to a TAFKAL80ETC concert</column>
+            <column name="sellIn">10</column>
+            <column name="quality">49</column>
+            <column name="type">concert pass</column>
+            <column name="ageingDegree">1</column>
+            <column name="ageingMode">GOOD</column>
+        </insert>
+        <insert tableName="tblItems">
+            <column name="name">Backstage passes to a TAFKAL80ETC concert</column>
+            <column name="sellIn">5</column>
+            <column name="quality">49</column>
+            <column name="type">concert pass</column>
+            <column name="ageingDegree">1</column>
+            <column name="ageingMode">GOOD</column>
+        </insert>
+        <insert tableName="tblItems">
+            <column name="name">Conjured Mana Cake</column>
+            <column name="sellIn">3</column>
+            <column name="quality">6</column>
+            <column name="type">conjured</column>
+            <column name="ageingDegree">2
+            </column>
+            <column name="ageingMode">BAD</column>
+        </insert>
+        <insert tableName="tblItems">
+            <column name="name">Cooking Book</column>
+            <column name="sellIn">6</column>
+            <column name="quality">8</column>
+            <column name="type">Cooking Book</column>
+            <column name="ageingDegree">1</column>
+            <column name="ageingMode">BAD</column>
+        </insert>
+        <insert tableName="tblItems">
+            <column name="name">Cooking Book</column>
+            <column name="sellIn">6</column>
+            <column name="quality">8</column>
+            <column name="type">Cooking Book</column>
+            <column name="ageingDegree">1</column>
+            <column name="ageingMode">BAD</column>
+        </insert>
+        <insert tableName="tblItems">
+            <column name="name">Jazz Book</column>
+            <column name="sellIn">20</column>
+            <column name="quality">10</column>
+            <column name="type">Music Book</column>
+            <column name="ageingDegree">1</column>
+            <column name="ageingMode">BAD</column>
+        </insert>
+        <insert tableName="tblItems">
+            <column name="name">Jazz Book</column>
+            <column name="sellIn">20</column>
+            <column name="quality">10</column>
+            <column name="type">Music Book</column>
+            <column name="ageingDegree">1</column>
+            <column name="ageingMode">BAD</column>
+        </insert>
+        <insert tableName="tblItems">
+            <column name="name">Blues Book</column>
+            <column name="sellIn">20</column>
+            <column name="quality">9</column>
+            <column name="type">Music Book</column>
+            <column name="ageingDegree">1</column>
+            <column name="ageingMode">BAD</column>
+        </insert>
+        <insert tableName="tblItems">
+            <column name="name">Blues Book</column>
+            <column name="sellIn">20</column>
+            <column name="quality">9</column>
+            <column name="type">Music Book</column>
+            <column name="ageingDegree">1</column>
+            <column name="ageingMode">BAD</column>
+        </insert>
+        <insert tableName="tblItems">
+            <column name="name">Blues Book</column>
+            <column name="sellIn">20</column>
+            <column name="quality">8</column>
+            <column name="type">Music Book</column>
+            <column name="ageingDegree">1</column>
+            <column name="ageingMode">BAD</column>
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>

@@ -2,6 +2,7 @@ package com.gildedrose.core.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.io.Serializable;
 import java.util.List;
 
@@ -21,11 +22,13 @@ public abstract class AbstractJpaDAO <T extends Serializable> implements Dao<T>{
     }
 
     public List<T> findAll() {
-        return entityManager.createQuery("from " + clazz.getName()).getResultList();
+        return entityManager.createQuery("FROM " + clazz.getName()).getResultList();
     }
 
     public List<T> findSome(List<Long> ids) {
-        return entityManager.createQuery("from " + clazz.getName() + " where id in (" + ids + ")").getResultList();
+        Query query = entityManager.createQuery("SELECT e FROM " + clazz.getName() + " e WHERE e.id IN (:ids)");
+        query.setParameter("ids",ids);
+        return query.getResultList();
     }
 
     public void create(T entity) {

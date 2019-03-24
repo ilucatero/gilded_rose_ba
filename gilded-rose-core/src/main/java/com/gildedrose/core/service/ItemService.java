@@ -1,6 +1,7 @@
 package com.gildedrose.core.service;
 
 import com.gildedrose.core.dao.Dao;
+import com.gildedrose.core.dao.ItemDao;
 import com.gildedrose.core.model.Item;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

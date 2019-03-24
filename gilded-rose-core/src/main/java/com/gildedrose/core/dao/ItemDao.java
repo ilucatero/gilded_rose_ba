@@ -1,5 +1,6 @@
 package com.gildedrose.core.dao;
 
+import com.gildedrose.core.db.utils.HsqlDatabase;
 import com.gildedrose.core.model.Item;
 import com.gildedrose.core.model.type.AgeingMode;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 public class ItemDao extends AbstractJpaDAO<Item>{
 
     public ItemDao(){
+        new HsqlDatabase().setUp(null, "testdb", Arrays.asList("0.1","0.2"));
         setClazz(Item.class);
     }
 
