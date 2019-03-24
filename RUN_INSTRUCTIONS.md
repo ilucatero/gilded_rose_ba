@@ -40,7 +40,7 @@ To run directly the file, via JVM or as an executable file, you must:
 The application use Liquibase to manage database changes (scheme & data). To load the logchange files 
 you can use the Maven command as below.
 ```
-mvn -pl gilded-rose-core\ liquibase:update -Dliquibase.dropFirst=true
+mvn -pl gilded-rose-db\ liquibase:update -Dliquibase.dropFirst=true
 ```
 
 At the moment, the applications auto-load the configured changes in a in-mem Hsql database so the previous
