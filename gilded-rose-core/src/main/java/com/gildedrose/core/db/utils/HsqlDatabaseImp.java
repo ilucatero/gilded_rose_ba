@@ -39,11 +39,6 @@ public class HsqlDatabaseImp implements HsqlDatabase{
 
         // TODO : move to path test/resources once hsql pass in mode unit test only
         basePath = Paths.get(basePath).toAbsolutePath().normalize().toString();
-        //basePath = Paths.get("").toAbsolutePath().normalize().toString();
-        // workaround for tests since this have bugs with the path
-        basePath = basePath.replace("gilded-rose-core", "");
-//            basePath = basePath.replace("gilded-rose-web", "");
-        basePath = basePath +  "/gilded-rose-core";
 
         this.basePath = basePath;
     }

@@ -10,7 +10,7 @@
     <!-- Embed Database server definition -->
     <!-- This uses HSQL and liquibase to load in-mem db server and commit pre defined scheme/data -->
     <bean id="HsqlDatabase" class="com.gildedrose.core.db.utils.HsqlDatabaseImp" init-method="init">
-        <property name="basePath" value="." />
+        <property name="basePath" value="./gilded-rose-db" />
         <property name="database" value="testdb" />
         <property name="versions">
             <list>

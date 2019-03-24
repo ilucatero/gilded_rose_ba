@@ -12,6 +12,7 @@
     <modules>
         <module>gilded-rose-core</module>
         <module>gilded-rose-web</module>
+        <module>gilded-rose-db</module>
     </modules>
 
     <properties>

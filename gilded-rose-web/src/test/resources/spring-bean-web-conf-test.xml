@@ -13,15 +13,8 @@
 
     <!-- Embed Database server definition (overrides the one in spring-bean-core) -->
     <!-- This uses HSQL and liquibase to load in-mem db server and commit pre defined scheme/data -->
-    <bean id="HsqlDatabase" class="com.gildedrose.core.db.utils.HsqlDatabaseImp" init-method="init">
-        <property name="basePath" value=".." />
-        <property name="database" value="testdb" />
-        <property name="versions">
-            <list>
-                <value>0.1</value>
-                <value>0.2</value>
-            </list>
-        </property>
+    <bean id="HsqlDatabase" class="com.gildedrose.core.db.utils.HsqlDatabaseImp" >
+        <!-- overrides bean definition to avoid launching init() since from this module here all db must be mocked-->
     </bean>
 
     <bean id="ItemAdapter" class="com.gildedrose.web.adapter.ItemAdapter" init-method="initIt" />
