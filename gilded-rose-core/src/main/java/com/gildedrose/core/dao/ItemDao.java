@@ -2,22 +2,18 @@ package com.gildedrose.core.dao;
 
 import com.gildedrose.core.db.utils.HsqlDatabase;
 import com.gildedrose.core.model.Item;
-import com.gildedrose.core.model.type.AgeingMode;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Repository
 @Transactional
 public class ItemDao extends AbstractJpaDAO<Item>{
 
     public ItemDao(){
-        new HsqlDatabase().setUp(null, "testdb", Arrays.asList("0.1","0.2"));
         setClazz(Item.class);
     }
 
