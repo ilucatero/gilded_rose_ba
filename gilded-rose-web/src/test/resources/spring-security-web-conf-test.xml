@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://www.springframework.org/schema/security"
+             xsi:schemaLocation="
+         http://www.springframework.org/schema/beans     http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/security  http://www.springframework.org/schema/security/spring-security.xsd
+       ">
+
+    <authentication-manager>
+        <authentication-provider>
+            <user-service>
+                <user name="user1" password="user1Pass" authorities="ROLE_USER"/>
+                <user name="admin" password="adminPass" authorities="ADMIN"/>
+            </user-service>
+            <password-encoder ref="encoder"/>
+        </authentication-provider>
+    </authentication-manager>
+
+    <beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+    <http use-expressions="true">
+        <!-- No authentication required  -->
+        <intercept-url pattern="/login*" access="isAnonymous()"/>
+        <intercept-url pattern="/anonymous*" access="isAnonymous()" />
+        <intercept-url method="GET" pattern="/resources/**" access="isAnonymous()"/>
+        <!-- Required authentication -->
+        <intercept-url pattern="/**" access="isAuthenticated()"/>
+        <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
+
+        <form-login login-page='/login'
+                    default-target-url="/"
+                    authentication-failure-url="/login?error=true"
+                    always-use-default-target="true" />
+        <logout logout-success-url="/login"/>
+    </http>
+
+
+
+</beans:beans>

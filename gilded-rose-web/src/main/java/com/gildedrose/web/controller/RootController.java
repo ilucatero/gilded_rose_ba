@@ -3,6 +3,10 @@ package com.gildedrose.web.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 public class RootController {
@@ -16,6 +20,17 @@ public class RootController {
 
         model.addAttribute("message", "Inventory of Items");
         return "index";
+    }
+
+    @GetMapping("/login")
+    public String login(Model model, @RequestParam(value = "error", required = false) String isError) {
+        model.addAttribute("error", isError != null ? isError  : false);
+        return "login";
+    }
+
+    @PostMapping("/perform_login")
+    public RedirectView performLogin(Model model) {
+        return new RedirectView("/");
     }
 
 }

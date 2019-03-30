@@ -55,7 +55,7 @@ public class ItemController {
     }
 
     @RequestMapping(value={"/degrade/{itemId}"}, method = RequestMethod.PATCH)
-    public ResponseEntity<Boolean >degrade(@PathVariable Long itemId){
+    public ResponseEntity<Boolean> degrade(@PathVariable Long itemId){
         try {
             boolean degrade = itemService.degrade(itemId);
             return ResponseEntity.ok(degrade);

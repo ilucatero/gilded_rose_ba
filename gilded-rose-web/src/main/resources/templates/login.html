@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+	<title>Login V15</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+	<link href="resources/img/favicon.ico" rel="icon" type="image/x-icon" />
+	<link href="resources/css/util.css" rel="stylesheet"  />
+	<link href="resources/css/main.css" rel="stylesheet" />
+	<!--===============================================================================================-->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+
+</head>
+<body>
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-form-title">
+					<span class="login100-form-title-1">
+						Sign In
+					</span>
+				</div>
+
+				<form class="login100-form validate-form" th:action="@{/perform_login}" method="post">
+					<div th:if="${error}" style="color: #c80000;">
+						Invalid username or password.
+					</div>
+					<div th:if="${logout}" style="color: #c80000;">
+						You have been logged out.
+					</div>
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+						<span class="label-input100">Username</span>
+						<input class="input100" type="text" name="username" placeholder="Enter username"  th:value="user1">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+						<span class="label-input100">Password</span>
+						<input class="input100" type="password" name="password" placeholder="Enter password"  th:value="user1Pass">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="flex-sb-m w-full p-b-30">
+						<div class="contact100-form-checkbox">
+							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+							<label class="label-checkbox100" for="ckb1">
+								Remember me
+							</label>
+						</div>
+
+						<div>
+							<a href="#" class="txt1">
+								Forgot Password?
+							</a>
+						</div>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" type="submit" >Login</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script src="resources/js/main.js"></script>
+
+
+	<div>
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<ins class="adsbygoogle"
+			 style="display:block; text-align:center;"
+			 data-ad-layout="in-article"
+			 data-ad-format="fluid"
+			 data-ad-client="ca-pub-1006468566144587"
+			 data-ad-slot="2021572968"></ins>
+		<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+	</div>
+</body>
+</html>

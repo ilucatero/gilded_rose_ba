@@ -3,42 +3,51 @@ package com.gildedrose.web.controller.ws;
 import com.gildedrose.core.model.Item;
 import com.gildedrose.core.service.ItemService;
 import com.gildedrose.web.adapter.ItemAdapter;
+import com.gildedrose.web.configuration.SecurityConfig;
 import com.gildedrose.web.dto.ItemDTO;
 import com.gildedrose.web.service.visitors.tagging.TaggingService;
 import org.assertj.core.util.Lists;
 import org.hamcrest.Matchers;
-import org.junit.Ignore;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
 import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.util.Arrays;
 
 
-@RunWith(SpringRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "/spring-bean-web-conf-test.xml" })
 @ComponentScan("com.gildedrose.web.controller")
 @ActiveProfiles("dev")
-@WebMvcTest(value = ItemController.class, secure = false)
-@AutoConfigureMockMvc
+@WebMvcTest(value = ItemController.class/*,
+        excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE,
+                classes = SecurityConfig.class),
+                excludeAutoConfiguration = MockMvcSecurityAutoConfiguration.class*/)
+@WithMockUser
 public class ItemControllerRestTest {
     // TODO  complete unit tests for each method and limits using the mocked webServer "testRestTemplate"
 
     @Autowired
-    private MockMvc mvc;
+    private WebApplicationContext webApplicationContext;
 
     @MockBean
     private ItemService itemService;
@@ -47,7 +56,15 @@ public class ItemControllerRestTest {
     @MockBean
     protected TaggingService taggingService;
 
+    private static MockMvc mvc;
+
     private final String ITEMS_REST_MAPPING = "/items";
+
+    @Before
+    public void setup(){
+        //Init MockMvc Object
+        mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+    }
 
     @Test
     public void return200WhenSendingRequestToGetItems() throws Exception {
