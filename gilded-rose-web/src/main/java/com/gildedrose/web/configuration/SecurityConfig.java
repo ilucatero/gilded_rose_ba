@@ -1,6 +1,7 @@
 package com.gildedrose.web.configuration;
 
 import com.gildedrose.web.authentication.CustomAuthenticationProvider;
+import com.gildedrose.web.authentication.LoginPageFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter;
 
 
 @Configuration
@@ -32,17 +34,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
+        http.addFilterBefore(new LoginPageFilter(), DefaultLoginPageGeneratingFilter.class);
+        // @formatter:off
+
         http
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/").fullyAuthenticated()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/anonymous*").anonymous()
-                .antMatchers("/login*").anonymous()
+                .antMatchers("/login*").not().authenticated()
                 .antMatchers(HttpMethod.GET ,"/resources/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
+                .formLogin().permitAll()
                 .loginPage("/login")
                 .loginProcessingUrl("/perform_login")
                 .defaultSuccessUrl("/", true)
@@ -52,8 +57,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutUrl("/perform_logout")
                 .deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true)
 //                .logoutSuccessHandler(logoutSuccessHandler())
         ;
+
+        http.headers()
+                .frameOptions()
+                .sameOrigin()
+                .defaultsDisabled()
+                .cacheControl();
+
     }
 
 }
