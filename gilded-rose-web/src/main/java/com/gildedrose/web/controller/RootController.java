@@ -28,8 +28,11 @@ public class RootController {
     }
 
     @GetMapping("/login")
-    public String login(Model model, @RequestParam(value = "error", required = false) String isError) {
+    public String login(Model model, @RequestParam(value = "error", required = false) String isError,
+                        @RequestParam(value = "logout", required = false) String isLogout) {
+
         model.addAttribute("error", isError != null ? isError  : false);
+        model.addAttribute("logout", isLogout != null ? isLogout : false);
         return "login";
     }
 

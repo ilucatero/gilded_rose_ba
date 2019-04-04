@@ -1,7 +1,7 @@
 package com.gildedrose.core.dao;
 
 import com.gildedrose.core.model.Item;
-import com.gildedrose.core.testutil.HsqldbBaseTestSetup;
+import com.gildedrose.db.utils.testutil.HsqldbBaseTestSetup;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,8 +1,6 @@
 package com.gildedrose.core.dao;
 
-import com.gildedrose.core.db.utils.HsqlDatabase;
 import com.gildedrose.core.model.Item;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,9 +28,6 @@ public class ItemDao extends AbstractJpaDAO<Item>{
     }
 
     public Item update(Item item, String[] params) {
-        // TODO: implement functionality as required
-
-        // TODO: once the db resource is implemented remove below code and do the actual db update
         Optional<Item> itemOptional = get(item.id);
         if (itemOptional.isPresent()) {
             Item updateItem = itemOptional.get();

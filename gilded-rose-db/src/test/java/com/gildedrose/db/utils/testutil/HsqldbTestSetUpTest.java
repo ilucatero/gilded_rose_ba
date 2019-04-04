@@ -1,4 +1,4 @@
-package com.gildedrose.core.testutil;
+package com.gildedrose.db.utils.testutil;
 
 import org.junit.Test;
 

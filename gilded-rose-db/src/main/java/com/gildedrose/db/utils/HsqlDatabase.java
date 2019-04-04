@@ -1,4 +1,4 @@
-package com.gildedrose.core.db.utils;
+package com.gildedrose.db.utils;
 
 
 import java.util.List;

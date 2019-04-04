@@ -30,7 +30,7 @@ public class ItemAdapterTest {
 
     @Before
     public final void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);
+        //MockitoAnnotations.initMocks(this);
 
         String largeString = "qsqqsdùlkfsùfnzrognzrognzrufnzeofizeùofijzeùofijzeùfijzùeofijzùefijzùefijzeiofjznzez";
 
