@@ -29,13 +29,29 @@
         <hibernate.version>5.3.9.Final</hibernate.version>
         <liquibase.version>3.6.3</liquibase.version>
 
+        <!-- frontend -->
+        <node.version>v10.15.3</node.version>
+        <npm.version>6.4.1</npm.version>
+        <frontend-maven-plugin.version>1.7.5</frontend-maven-plugin.version>
+
         <!-- test -->
         <junit.version>4.12</junit.version>
         <mockito.version>1.9.5</mockito.version>
         <spring-security-test.version>5.1.4.RELEASE</spring-security-test.version>
         <hsqldb.version>2.4.1</hsqldb.version>
 
+        <!-- Other uses -->
+         <skipNPM>true</skipNPM>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <skipNPM>false</skipNPM>
+            </properties>
+        </profile>
+    </profiles>
 
     <dependencies>
 
@@ -91,6 +107,14 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${spring-boot.version}</version>
+                    <configuration>
+                        <skip>true</skip>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>com.github.eirslett</groupId>
+                    <artifactId>frontend-maven-plugin</artifactId>
+                    <version>${frontend-maven-plugin.version}</version>
                     <configuration>
                         <skip>true</skip>
                     </configuration>

@@ -9,9 +9,15 @@ git clone git@github.com:ilucatero/guilded_rose_ba.git
 
 
 ###### Compile
+
+If the applications is build for the first type, you have to use the "prod" profile to download nodeJs/NPM 
+dependencies and build the ReactApp (keep in mind that this will take some minutes to complete).
 ```
-mvn clean package
+mvn clean package -Pprod
 ```
+
+After that, you can just remove the profile on previous line to compile to avoid build npm (if your changes are no
+java code, data, or any other conf). This way the compilation process should be faster.
 
 
 ###### Run as with mvn (option 1)

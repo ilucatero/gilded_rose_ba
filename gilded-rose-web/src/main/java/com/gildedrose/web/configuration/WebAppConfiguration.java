@@ -20,5 +20,9 @@ public class WebAppConfiguration implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/static/")
                 .setCachePeriod(0) // TODO : change the cached value > 0 depending on DEV or PROD profiles
                 .resourceChain(true);
+
+        registry
+                .addResourceHandler("/resources-spa/**")
+                .addResourceLocations("classpath:/react-app");
     }
 }
