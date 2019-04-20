@@ -21,8 +21,15 @@ public class WebAppConfiguration implements WebMvcConfigurer {
                 .setCachePeriod(0) // TODO : change the cached value > 0 depending on DEV or PROD profiles
                 .resourceChain(true);
 
-        registry
-                .addResourceHandler("/resources-spa/**")
-                .addResourceLocations("classpath:/react-app");
+        registry.addResourceHandler("/static/**")
+                .addResourceLocations("classpath:/paper-dashboard-react/build/static/");
+        registry.addResourceHandler("/*.js")
+                .addResourceLocations("classpath:/paper-dashboard-react/build/");
+        registry.addResourceHandler("/*.json")
+                .addResourceLocations("classpath:/paper-dashboard-react/build/");
+        registry.addResourceHandler("/*.ico")
+                .addResourceLocations("classpath:/paper-dashboard-react/build/");
+        registry.addResourceHandler("/index.html")
+                .addResourceLocations("classpath:/paper-dashboard-react/build/index.html");
     }
 }

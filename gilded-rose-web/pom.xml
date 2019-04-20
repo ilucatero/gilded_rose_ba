@@ -76,9 +76,19 @@
                 <excludes>
                     <exclude>react-app/node_modules/**</exclude>
                     <exclude>react-app/node/**</exclude>
-                    <exclude>react-app/build/**</exclude>
+<!--                    <exclude>react-app/build/**</exclude>-->
+                    <exclude>react-app/src/**</exclude>
+                    <exclude>react-app/*.*</exclude>
+
+                    <exclude>paper-dashboard-react/node_modules/**</exclude>
+                    <exclude>paper-dashboard-react/node/**</exclude>
+<!--                    <exclude>react-dashboard-app/build/**</exclude>-->
+                    <exclude>paper-dashboard-react/src/**</exclude>
+                    <exclude>paper-dashboard-react/docs/**</exclude>
+                    <exclude>paper-dashboard-react/*.*</exclude>
                 </excludes>
             </resource>
+
         </resources>
 
         <plugins>
@@ -105,12 +115,13 @@
                 <artifactId>frontend-maven-plugin</artifactId>
                 <version>${frontend-maven-plugin.version}</version>
                 <configuration>
-                    <skip>${skipNPM}</skip>
+                    <skip>${skipNPM}</skip> <!-- activate with profile : "prod" -->
                     <!-- versions -->
                     <nodeVersion>${node.version}</nodeVersion>
                     <npmVersion>${npm.version}</npmVersion>
                     <!-- directories -->
-                    <workingDirectory>src/main/resources/react-app</workingDirectory>
+<!--                    <workingDirectory>src/main/resources/react-app</workingDirectory>-->
+                    <workingDirectory>src/main/resources/paper-dashboard-react</workingDirectory>
 <!--                    <installDirectory>target</installDirectory>-->
                 </configuration>
                 <executions>

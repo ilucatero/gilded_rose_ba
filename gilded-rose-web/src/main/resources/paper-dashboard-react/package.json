@@ -1,0 +1,54 @@
+{
+  "name": "paper-dashboard-react",
+  "version": "1.0.0",
+  "private": true,
+  "_h_omepage": "https://creativetimofficial.github.io/paper-dashboard-react/#/dashboard",
+  "dependencies": {
+    "@types/react": "16.8.6",
+    "bootstrap": "4.3.1",
+    "chart.js": "2.8.0",
+    "history": "4.9.0",
+    "jquery": "3.4.0",
+    "datatables.net": "^1.10.19",
+    "node-sass": "^4.11.0",
+    "perfect-scrollbar": "1.4.0",
+    "react": "16.8.6",
+    "react-chartjs-2": "2.7.4",
+    "react-dom": "16.8.6",
+    "react-google-maps": "9.4.5",
+    "react-notification-alert": "0.0.12",
+    "react-router-dom": "4.3.1",
+    "react-scripts": "^2.1.8",
+    "reactstrap": "8.0.0"
+  },
+  "devDependencies": {
+    "typescript": "3.4.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "scss": "node-sass --include-path ./src --include-path ./node_modules src/ -o src/",
+    "lint:check": "eslint . --ext=js,jsx;  exit 0",
+    "lint:fix": "eslint . --ext=js,jsx --fix;  exit 0",
+    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "optionalDependencies": {
+    "eslint-config-prettier": "^3.6.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "prettier": "^1.17.0",
+    "ajv": "6.10.0",
+    "@types/googlemaps": "3.30.19",
+    "@types/markerclustererplus": "2.1.33"
+  }
+}
