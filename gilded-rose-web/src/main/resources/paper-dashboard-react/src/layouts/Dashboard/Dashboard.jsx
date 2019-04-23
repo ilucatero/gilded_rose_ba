@@ -6,7 +6,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Header from "components/Header/Header.jsx";
 import Footer from "components/Footer/Footer.jsx";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
-// import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
+import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
 
 import dashboardRoutes from "routes/dashboard.jsx";
 
@@ -15,6 +15,7 @@ var ps;
 class Dashboard extends React.Component {
   constructor(props){
     super(props);
+    this.refMainPanel = React.createRef();
     this.state = {
       backgroundColor: "black",
       activeColor: "info",
@@ -22,7 +23,7 @@ class Dashboard extends React.Component {
   }
   componentDidMount() {
     if (navigator.platform.indexOf("Win") > -1) {
-      ps = new PerfectScrollbar(this.refs.mainPanel);
+      ps = new PerfectScrollbar(this.refMainPanel.current);
       document.body.classList.toggle("perfect-scrollbar-on");
     }
   }
@@ -34,7 +35,7 @@ class Dashboard extends React.Component {
   }
   componentDidUpdate(e) {
     if (e.history.action === "PUSH") {
-      this.refs.mainPanel.scrollTop = 0;
+      this.refMainPanel.current.scrollTop = 0;
       document.scrollingElement.scrollTop = 0;
     }
   }
@@ -53,7 +54,7 @@ class Dashboard extends React.Component {
           bgColor={this.state.backgroundColor}
           activeColor={this.state.activeColor}
         />
-        <div className="main-panel" ref="mainPanel">
+        <div className="main-panel" ref={this.refMainPanel}>
           <Header {...this.props} />
           <Switch>
             {dashboardRoutes.map((prop, key) => {
@@ -70,12 +71,12 @@ class Dashboard extends React.Component {
           </Switch>
           <Footer fluid />
         </div>
-        {/*<FixedPlugin*/}
-        {/*  bgColor={this.state.backgroundColor}*/}
-        {/*  activeColor={this.state.activeColor}*/}
-        {/*  handleActiveClick={this.handleActiveClick}*/}
-        {/*  handleBgClick={this.handleBgClick}*/}
-        {/*/>*/}
+        <FixedPlugin
+          bgColor={this.state.backgroundColor}
+          activeColor={this.state.activeColor}
+          handleActiveClick={this.handleActiveClick}
+          handleBgClick={this.handleBgClick}
+        />
       </div>
     );
   }

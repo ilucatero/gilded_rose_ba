@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 
-import Button from "components/CustomButton/CustomButton.jsx";
+// import Button from "components/CustomButton/CustomButton.jsx";
 
 class FixedPlugin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      classes: "dropdown show"
+      classes: "dropdown"
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -112,39 +112,39 @@ class FixedPlugin extends Component {
                 />
               </div>
             </li>
-            <li className="button-container">
-              <Button
-                href="https://www.creative-tim.com/product/paper-dashboard-react"
-                color="primary"
-                block
-                round
-              >
-                Download now
-              </Button>
-            </li>
-            <li className="button-container">
-              <Button
-                href="https://www.creative-tim.com/product/paper-dashboard-react/#/documentation/tutorial"
-                color="default"
-                block
-                round
-                outline
-              >
-                <i className="nc-icon nc-paper"></i> Documentation
-              </Button>
-            </li>
-            <li className="header-title">Want more components?</li>
-            <li className="button-container">
-              <Button
-                href="https://www.creative-tim.com/product/paper-dashboard-pro-react"
-                color="danger"
-                block
-                round
-                disabled
-              >
-                Get pro version
-              </Button>
-            </li>
+            {/*<li className="button-container">*/}
+            {/*  <Button*/}
+            {/*    href="https://www.creative-tim.com/product/paper-dashboard-react"*/}
+            {/*    color="primary"*/}
+            {/*    block*/}
+            {/*    round*/}
+            {/*  >*/}
+            {/*    Download now*/}
+            {/*  </Button>*/}
+            {/*</li>*/}
+            {/*<li className="button-container">*/}
+            {/*  <Button*/}
+            {/*    href="https://www.creative-tim.com/product/paper-dashboard-react/#/documentation/tutorial"*/}
+            {/*    color="default"*/}
+            {/*    block*/}
+            {/*    round*/}
+            {/*    outline*/}
+            {/*  >*/}
+            {/*    <i className="nc-icon nc-paper"></i> Documentation*/}
+            {/*  </Button>*/}
+            {/*</li>*/}
+            {/*<li className="header-title">Want more components?</li>*/}
+            {/*<li className="button-container">*/}
+            {/*  <Button*/}
+            {/*    href="https://www.creative-tim.com/product/paper-dashboard-pro-react"*/}
+            {/*    color="danger"*/}
+            {/*    block*/}
+            {/*    round*/}
+            {/*    disabled*/}
+            {/*  >*/}
+            {/*    Get pro version*/}
+            {/*  </Button>*/}
+            {/*</li>*/}
           </ul>
         </div>
       </div>

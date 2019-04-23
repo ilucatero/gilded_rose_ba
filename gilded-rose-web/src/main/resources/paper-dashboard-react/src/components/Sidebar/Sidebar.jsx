@@ -35,7 +35,7 @@ class Sidebar extends React.Component {
       <div className="sidebar" data-color={this.props.bgColor} data-active-color={this.props.activeColor}>
         <div className="logo">
           <a
-            href="https://www.creative-tim.com"
+            href="/index.html"
             className="simple-text logo-mini"
           >
             <div className="logo-img">
@@ -46,7 +46,7 @@ class Sidebar extends React.Component {
             href="https://www.creative-tim.com"
             className="simple-text logo-normal"
           >
-            Gilded Rose
+            Info Wuffer
           </a>
         </div>
         <div className="sidebar-wrapper" ref="sidebar">
